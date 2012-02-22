@@ -58,7 +58,7 @@ def check_birthday(value):
 
     # Is in the past?
     delta = (now - value)
-    if not delta > 0:
+    if not delta.days > 0:
         raise Invalid(_(u"Birthday must be a date in the past."))
     else:
         return True
