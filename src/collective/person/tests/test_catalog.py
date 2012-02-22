@@ -67,6 +67,34 @@ class IntegrationTest(unittest.TestCase):
                                         cooked_birthday='0721')
         self.assertEquals(len(results), 1)
 
+    def test_indexer_normalized_given_name(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        p1.given_name = u'Dražen'
+        p1.reindexObject()
+        results = self.pc.searchResults(portal_type='collective.person.person',
+                                        sortable_given_name='drazen')
+        self.assertEquals(len(results), 1)
+
+    def test_indexer_normalized_surname(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        p1.surname = u'Petrović'
+        p1.reindexObject()
+        results = self.pc.searchResults(portal_type='collective.person.person',
+                                        sortable_surname='petrovic')
+        self.assertEquals(len(results), 1)
+
+    def test_indexer_normalized_fullname(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        p1.given_name = u'Dražen'
+        p1.surname = u'Petrović'
+        p1.reindexObject()
+        results = self.pc.searchResults(portal_type='collective.person.person',
+                                        sortable_fullname='drazen-petrovic')
+        self.assertEquals(len(results), 1)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
