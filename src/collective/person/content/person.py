@@ -105,6 +105,18 @@ grok.global_adapter(person_normalized_surname,
 
 
 @indexer(IPerson, IPersonCatalog)
+def person_normalized_fullname(obj):
+    ''' Normalize a person fullname
+    '''
+    norm = queryUtility(IIDNormalizer)
+    if obj.fullname and norm:
+        return norm.normalize(obj.fullname)
+
+grok.global_adapter(person_normalized_fullname,
+                    name="sortable_fullname")
+
+
+@indexer(IPerson, IPersonCatalog)
 def person_has_portrait(obj):
     ''' Return Tr if the person has a portrait
     '''
