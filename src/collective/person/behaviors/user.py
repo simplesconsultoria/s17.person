@@ -77,6 +77,15 @@ class PloneUser(object):
     def user_name(self, value):
         self.annotation['collective.person.user_name'] = value
 
+    def getUser(self):
+        ''' Return the Plone User related to this content
+            or None if not available
+        '''
+        mt = getToolByName(self.context, 'portal_membership', None)
+        if mt:
+            member = mt.getMemberById(self.user_name)
+            return member or None
+
 
 class INameFromUserName(INameFromTitle):
     """Get the name from the user_name field value.
@@ -92,7 +101,7 @@ class INameFromUserName(INameFromTitle):
 
 class NameFromUserName(object):
     implements(INameFromUserName)
-    adapts(IPloneUser)
+    adapts(IPerson)
 
     def __init__(self, context):
         self.context = context
