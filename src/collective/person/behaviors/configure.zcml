@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="dexterity.membrane">
+
+  <include package="plone.behavior" file="meta.zcml" />
+
+  <!-- behavior -->
+  <plone:behavior
+      title="Person-Plone User Bridge"
+      description="Integrates a Person-ish content type to a Plone user"
+      provides=".user.IPloneUser"
+      marker=".user.IPloneUser"
+      factory=".user.PloneUser"
+      for="collective.person.content.person.IPerson"
+      />
+
+
+  <!-- Name Providers -->
+  <plone:behavior
+      title="Name from user name"
+      description="Use the user name field as name (basis for the id)"
+      provides=".user.INameFromUserName"
+      marker=".user.INameFromUserName"
+      factory=".user.NameFromUserName"
+      for="collective.person.behaviors.user.IPloneUser"
+      />
+
+  <plone:behavior
+      title="Name from fullname"
+      description="Use the fullname field as name (basis for the id)"
+      provides=".base.INameFromFullName"
+      marker=".base.INameFromFullName"
+      factory=".base.NameFromFullName"
+      for="collective.person.content.person.IPerson"
+      />
+
+
+</configure>
