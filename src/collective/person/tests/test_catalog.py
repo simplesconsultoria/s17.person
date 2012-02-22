@@ -58,10 +58,10 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue('has_portrait' in self.metadata)
 
     def test_indexer_cooked_birthday(self):
-        from datetime import datetime
+        from datetime import date
         self.folder.invokeFactory('collective.person.person', 'p1')
         p1 = self.folder['p1']
-        p1.birthday = datetime(1969, 7, 21)
+        p1.birthday = date(1969, 7, 21)
         p1.reindexObject()
         results = self.pc.searchResults(portal_type='collective.person.person',
                                         cooked_birthday='0721')
