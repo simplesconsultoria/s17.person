@@ -63,6 +63,19 @@ class IntegrationTest(unittest.TestCase):
         self.assertEquals(p1.title, 'James T. Kirk')
         self.assertEquals(p1.fullname, 'James T. Kirk')
 
+    def test_birthday_past(self):
+        from datetime import date
+        birthday = date(1969, 7, 21)
+        # Validate returns None if it is ok
+        self.assertTrue(not IPerson['birthday'].validate(birthday))
+
+    def test_birthday_future(self):
+        from datetime import date
+        from zope.interface import Invalid
+        birthday = date(2069, 7, 21)
+        # Date is in the future
+        self.assertRaises(Invalid, IPerson['birthday'].validate, birthday)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
