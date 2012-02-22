@@ -32,6 +32,7 @@ setup(name='collective.person',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.behavior',
           'plone.app.dexterity>=1.1',
           'plone.app.referenceablebehavior',
           'plone.namedfile[blobs]',
