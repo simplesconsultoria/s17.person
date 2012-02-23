@@ -105,6 +105,18 @@ class IntegrationTest(unittest.TestCase):
                                         sortable_fullname='drazen-petrovic')
         self.assertEquals(len(results), 1)
 
+    def test_delete_person_remove_from_catalogs(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        p1.given_name = u'Dražen'
+        p1.surname = u'Petrović'
+        p1.reindexObject()
+        self.folder.manage_delObjects(['p1', ])
+        results = self.pc.searchResults(portal_type='collective.person.person')
+        self.assertEquals(len(results), 0)
+        results = self.ct.searchResults(portal_type='collective.person.person')
+        self.assertEquals(len(results), 0)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
