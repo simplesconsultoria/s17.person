@@ -27,12 +27,6 @@
       for="collective.person.behaviors.user.IPloneUser"
       />
 
-  <plone:behavior
-      title="Name from fullname"
-      description="Use the fullname field as name (basis for the id)"
-      provides=".base.INameFromFullName"
-      marker=".base.INameFromFullName"
-      factory=".base.NameFromFullName"
       for="collective.person.content.person.IPerson"
       />
 
