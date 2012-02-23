@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest2 as unittest
 
+from five import grok
 from zope.component import queryUtility
 
 from zope.interface import Invalid
@@ -13,7 +14,9 @@ from plone.behavior.interfaces import IBehavior
 from plone.dexterity.fti import DexterityFTI
 from plone.dexterity.interfaces import IDexterityFTI
 
-from collective.person.behaviors.base import INameFromFullName
+from collective.person.content.person import Person
+from collective.person.content.person import IPerson
+
 from collective.person.behaviors.user import INameFromUserName
 from collective.person.behaviors.user import IPloneUser
 
@@ -21,68 +24,20 @@ from collective.person.behaviors.user import IPloneUser
 from collective.person.testing import INTEGRATION_TESTING
 
 
-class BaseTestCase(unittest.TestCase):
-
-    layer = INTEGRATION_TESTING
-
-    def setUp(self):
-        self.portal = self.layer['portal']
-        self.pt = self.portal.portal_types
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Folder', 'test-folder')
-        setRoles(self.portal, TEST_USER_ID, ['Member'])
-        self.folder = self.portal['test-folder']
+class IPersonish(IPerson):
+    ''' A specialization of IPerson '''
 
 
-class INameFromFullNameTest(BaseTestCase):
-
-    name = 'collective.person.behaviors.base.INameFromFullName'
-
-    def setUp(self):
-        BaseTestCase.setUp(self)
-
-    def test_registration(self):
-        registration = queryUtility(IBehavior, name=self.name)
-        self.assertNotEquals(None, registration)
-
-    def test_set_as_default_in_person(self):
-        fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
-        behaviors = fti.behaviors
-        self.assertTrue(self.name in behaviors)
-
-    def test_adapt_content(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
-        p1 = self.folder['p1']
-        self.assertTrue(INameFromFullName.providedBy(p1))
-
-    def test_provide_new_id(self):
-        from zope.container.interfaces import INameChooser
-        chooser = INameChooser(self.folder)
-        self.folder.invokeFactory('collective.person.person', 'p1')
-        p1 = self.folder['p1']
-        p1.given_name = u'Dražen'
-        p1.surname = u'Petrović'
-        self.assertEquals(chooser.chooseName(None, p1), 'drazen-petrovic')
-
-    def test_provide_new_id_resolve_conflict(self):
-        from zope.container.interfaces import INameChooser
-        chooser = INameChooser(self.folder)
-        # Create a person with the id that would be generated from
-        # name
-        self.folder.invokeFactory('collective.person.person',
-                                  'drazen-petrovic')
-        self.folder.invokeFactory('collective.person.person', 'p1')
-        p1 = self.folder['p1']
-        p1.given_name = u'Dražen'
-        p1.surname = u'Petrović'
-        self.assertEquals(chooser.chooseName(None, p1),
-                          'drazen-petrovic-1')
+class Personish(Person):
+    ''' '''
+    grok.implements(IPersonish)
 
 
-class IPloneUserTest(BaseTestCase):
+class IPloneUserTest(unittest.TestCase):
 
     name = 'collective.person.behaviors.user.IPloneUser'
+
+    layer = INTEGRATION_TESTING
 
     def setUpUsers(self):
         ''' Create plone users '''
@@ -96,12 +51,16 @@ class IPloneUserTest(BaseTestCase):
             rt.addMember(username, username, properties=properties)
 
     def setUp(self):
+        self.portal = self.layer['portal']
+        self.pt = self.portal.portal_types
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        self.folder = self.portal['test-folder']
         behaviors = []
         behaviors.append(self.name)
         fti = queryUtility(IDexterityFTI,
                            name='collective.person.person')
         fti.behaviors = tuple(behaviors)
-        BaseTestCase.setUp(self)
         self.setUpUsers()
 
     def test_registration(self):
@@ -151,18 +110,33 @@ class IPloneUserTest(BaseTestCase):
         self.assertNotEquals(None, adapter.getUser())
 
 
-class INameFromUserNameTest(BaseTestCase):
+class INameFromUserNameTest(unittest.TestCase):
 
     name = 'collective.person.behaviors.user.INameFromUserName'
 
+    layer = INTEGRATION_TESTING
+
+    def setUpType(self):
+        person_fti = DexterityFTI(
+            'Personish',
+            factory='Personish',
+            global_allow=True,
+            behaviors=(
+                'collective.person.behaviors.user.IPloneUser',
+                'collective.person.behaviors.user.INameFromUserName',
+                ),
+            schema='collective.person.tests.test_inamefromusername.IPersonish',
+            klass='collective.person.tests.test_inamefromusername.Personish'
+        )
+        self.pt._setObject('Personish', person_fti)
+
     def setUp(self):
-        behaviors = []
-        behaviors.append('collective.person.behaviors.user.IPloneUser')
-        behaviors.append(self.name)
-        fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
-        fti.behaviors = tuple(behaviors)
-        BaseTestCase.setUp(self)
+        self.portal = self.layer['portal']
+        self.pt = self.portal.portal_types
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        self.folder = self.portal['test-folder']
+        self.setUpType()
 
     def test_registration(self):
         registration = queryUtility(IBehavior, name=self.name)
@@ -170,22 +144,22 @@ class INameFromUserNameTest(BaseTestCase):
 
     def test_set_as_default_in_person(self):
         fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
+                           name='Personish')
         behaviors = fti.behaviors
         self.assertTrue(self.name in behaviors)
 
     def test_adapt_content(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('Personish', 'p1')
         p1 = self.folder['p1']
         self.assertTrue(INameFromUserName.providedBy(p1))
 
     def test_provide_new_id(self):
-        from collective.person.behaviors.user import NameFromUserName
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        from plone.app.content.interfaces import INameFromTitle
+        self.folder.invokeFactory('Personish', 'p1')
         p1 = self.folder['p1']
         plone_user = IPloneUser(p1)
         plone_user.user_name = 'dpetrovic'
-        self.assertEquals(NameFromUserName(plone_user).title, 'dpetrovic')
+        self.assertEquals(INameFromTitle(p1).title, 'dpetrovic')
 
 
 def test_suite():
