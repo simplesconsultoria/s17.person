@@ -12,7 +12,6 @@
       title="Person-Plone User Bridge"
       description="Integrates a Person-ish content type to a Plone user"
       provides=".user.IPloneUser"
-      marker=".user.IPloneUser"
       factory=".user.PloneUser"
       for="collective.person.content.person.IPerson"
       />
