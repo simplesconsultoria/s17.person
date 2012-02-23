@@ -22,13 +22,9 @@
       title="Name from user name"
       description="Use the user name field as name (basis for the id)"
       provides=".user.INameFromUserName"
-      marker=".user.INameFromUserName"
-      factory=".user.NameFromUserName"
-      for="collective.person.behaviors.user.IPloneUser"
-      />
-
       for="collective.person.content.person.IPerson"
       />
 
+  <adapter factory=".user.NameFromUserName" />
 
 </configure>
