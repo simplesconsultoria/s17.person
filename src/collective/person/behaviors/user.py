@@ -48,8 +48,8 @@ class IPloneUser(form.Schema):
         """
         context = getattr(data, '__context__', None)
         if context is not None:
-            if hasattr(context, 'user_name') and (
-                            context.user_name == context.user_name):
+            adapter = IPloneUser(context)
+            if adapter.user_name == data.user_name:
                 # No change, fine.
                 return
         error = validate_user_name(data.user_name)

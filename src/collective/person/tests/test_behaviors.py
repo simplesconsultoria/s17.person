@@ -102,6 +102,27 @@ class IPloneUserTest(unittest.TestCase):
         data.user_name = 'user1'
         self.assertRaises(Invalid, IPloneUser.validateInvariants, data)
 
+    def test_edit_username(self):
+        class MockUser(object):
+            user_name = ''
+            __context__ = None
+        # Create a person
+        self.folder.invokeFactory('collective.person.person', 'user1')
+        user1 = self.folder['user1']
+        plone_user = IPloneUser(user1)
+        plone_user.user_name = 'user1'
+        user1.reindexObject()
+        # Now we validate if using the same user_name **and** in the same
+        # context we have a green light
+        data = MockUser()
+        data.user_name = 'user1'
+        data.__context__ = user1
+        # Now we validate the username user1
+        try:
+            IPloneUser.validateInvariants(data)
+        except Invalid:
+            self.fail()
+
     def test_get_user(self):
         self.folder.invokeFactory('collective.person.person', 'user1')
         user1 = self.folder['user1']
