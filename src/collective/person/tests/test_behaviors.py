@@ -125,8 +125,8 @@ class INameFromUserNameTest(unittest.TestCase):
                 'collective.person.behaviors.user.IPloneUser',
                 'collective.person.behaviors.user.INameFromUserName',
                 ),
-            schema='collective.person.tests.test_inamefromusername.IPersonish',
-            klass='collective.person.tests.test_inamefromusername.Personish'
+            schema='collective.person.tests.test_behaviors.IPersonish',
+            klass='collective.person.tests.test_behaviors.Personish'
         )
         self.pt._setObject('Personish', person_fti)
 
