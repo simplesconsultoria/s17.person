@@ -22,7 +22,7 @@
 
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-     <element value="collective.person.behaviors.base.INameFromFullName" />
+     <element value="plone.app.content.interfaces.INameFromTitle" />
    </property>
 
   <!-- View information -->
