@@ -20,6 +20,7 @@ class IntegrationTest(unittest.TestCase):
         self.portal.invokeFactory('Folder', 'test-folder')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
+        self.ct = self.portal['portal_catalog']
         self.pc = self.portal['portal_personcatalog']
         self.indexes = self.pc.indexes()
         self.metadata = self.pc.schema()
@@ -56,6 +57,15 @@ class IntegrationTest(unittest.TestCase):
 
     def test_metadata_has_portrait_setup(self):
         self.assertTrue('has_portrait' in self.metadata)
+
+    def test_person_catalog_multiplex(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        p1.reindexObject()
+        results = self.pc.searchResults(portal_type='collective.person.person')
+        self.assertEquals(len(results), 1)
+        results = self.ct.searchResults(portal_type='collective.person.person')
+        self.assertEquals(len(results), 1)
 
     def test_indexer_cooked_birthday(self):
         from datetime import date
