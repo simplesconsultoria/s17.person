@@ -72,7 +72,7 @@ class PloneUser(object):
 
     @property
     def user_name(self):
-        return self.annotation['collective.person.user_name']
+        return self.annotation.get('collective.person.user_name', '')
 
     @user_name.setter
     def user_name(self, value):
