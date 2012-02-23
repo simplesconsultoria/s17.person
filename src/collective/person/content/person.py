@@ -146,8 +146,9 @@ class Person(dexterity.Item):
 
     def unindexObject(self):
         ''' remove an object from all registered catalogs '''
+        path = '/'.join(self.getPhysicalPath())
         for c in self._catalogs():
-            c.uncatalog_object(self)
+            c.uncatalog_object(path)
 
     def reindexObjectSecurity(self, skip_self=False):
         ''' reindex only security information on catalogs '''
@@ -180,19 +181,19 @@ class Person(dexterity.Item):
 
     def Title(self):
         ''' Return a title from given_name and surname '''
-        return '%s %s' % (self.given_name, self.surname)
+        return self.fullname
 
     @property
     def title(self):
-        return self.Title()
+        ''' return fullname '''
+        return self.fullname
 
     @title.setter
     def title(self, value):
-        # We make sure our title is defined **only** by
-        # Title function
+        ''' we wont set a title here'''
         pass
 
     @property
     def fullname(self):
         ''' A person's fullname '''
-        return self.Title()
+        return '%s %s' % (self.given_name, self.surname)
