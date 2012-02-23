@@ -6,6 +6,7 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
 from zope.interface import alsoProvides
 from zope.interface import implements
+from zope.interface import Interface
 from zope.app.component.hooks import getSite
 from zope.interface import Invalid, invariant
 
@@ -87,7 +88,7 @@ class PloneUser(object):
             return member or None
 
 
-class INameFromUserName(INameFromTitle):
+class INameFromUserName(Interface):
     """Get the name from the user_name field value.
 
     This is really just a marker interface, automatically set by
@@ -100,12 +101,15 @@ class INameFromUserName(INameFromTitle):
 
 
 class NameFromUserName(object):
-    implements(INameFromUserName)
-    adapts(IPerson)
+    implements(INameFromTitle)
+    adapts(INameFromUserName)
 
     def __init__(self, context):
         self.context = context
+        self.annotation = IAnnotations(self.context)
 
     @property
     def title(self):
-        return self.context.user_name
+        anno = self.annotation
+        if anno and 'collective.person.user_name' in anno:
+            return anno['collective.person.user_name']
