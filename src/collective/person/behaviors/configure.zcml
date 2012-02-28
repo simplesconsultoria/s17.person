@@ -7,12 +7,20 @@
 
   <include package="plone.behavior" file="meta.zcml" />
 
-  <!-- behavior -->
+  <!-- behaviors -->
   <plone:behavior
       title="Person-Plone User Bridge"
       description="Integrates a Person-ish content type to a Plone user"
       provides=".user.IPloneUser"
       factory=".user.PloneUser"
+      for="collective.person.content.person.IPerson"
+      />
+
+  <plone:behavior
+      title="Contact Info"
+      description="Basic contact information behavior for Person-ish content types to a Plone user"
+      provides=".contact.IContactInfo"
+      factory=".contact.ContactInfo"
       for="collective.person.content.person.IPerson"
       />
 

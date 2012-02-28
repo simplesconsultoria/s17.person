@@ -17,6 +17,8 @@ from plone.dexterity.interfaces import IDexterityFTI
 from collective.person.content.person import Person
 from collective.person.content.person import IPerson
 
+from collective.person.behaviors.contact import IContactInfo
+
 from collective.person.behaviors.user import INameFromUserName
 from collective.person.behaviors.user import IPloneUser
 
@@ -181,6 +183,62 @@ class INameFromUserNameTest(unittest.TestCase):
         plone_user = IPloneUser(p1)
         plone_user.user_name = 'dpetrovic'
         self.assertEquals(INameFromTitle(p1).title, 'dpetrovic')
+
+
+class IContactInfoTest(unittest.TestCase):
+
+    name = 'collective.person.behaviors.contact.IContactInfo'
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.pt = self.portal.portal_types
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        self.folder = self.portal['test-folder']
+        behaviors = []
+        behaviors.append(self.name)
+        fti = queryUtility(IDexterityFTI,
+                           name='collective.person.person')
+        fti.behaviors = tuple(behaviors)
+
+    def test_registration(self):
+        registration = queryUtility(IBehavior, name=self.name)
+        self.assertNotEquals(None, registration)
+
+    def test_set_in_person(self):
+        fti = queryUtility(IDexterityFTI,
+                           name='collective.person.person')
+        behaviors = fti.behaviors
+        self.assertTrue(self.name in behaviors)
+
+    def test_adapt_content(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        adapter = IContactInfo(p1)
+        self.assertNotEquals(None, adapter)
+
+    def test_emails(self):
+        self.folder.invokeFactory('collective.person.person', 'user1')
+        user1 = self.folder['user1']
+        adapter = IContactInfo(user1)
+        adapter.emails = ['foo@bar.com', 'bar@foo.com']
+        self.assertEquals(len(adapter.emails), 2)
+
+    def test_instant_messengers(self):
+        self.folder.invokeFactory('collective.person.person', 'user1')
+        user1 = self.folder['user1']
+        adapter = IContactInfo(user1)
+        adapter.instant_messengers = ['foo@bar.com', 'bar@foo.com']
+        self.assertEquals(len(adapter.instant_messengers), 2)
+
+    def test_telephones(self):
+        self.folder.invokeFactory('collective.person.person', 'user1')
+        user1 = self.folder['user1']
+        adapter = IContactInfo(user1)
+        adapter.telephones = ['555.1213', '316.9876']
+        self.assertEquals(len(adapter.telephones), 2)
 
 
 def test_suite():
