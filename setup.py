@@ -6,7 +6,8 @@ version = '1.0'
 
 setup(name='collective.person',
       version=version,
-      description="",
+      description="A package containing a Dexterity content type and behaviors\
+                   to represent a Person as a content in a Plone site",
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[

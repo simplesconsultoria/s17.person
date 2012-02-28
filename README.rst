@@ -1,19 +1,23 @@
-.. contents:: Table of Contents
-   :depth: 2
-
+**************************************************************
 collective.person
 **************************************************************
+
+.. contents:: Table of Contents
+   :depth: 2
 
 Overview
 --------
 
-Please fill me...
+A package containing a Dexterity content type and behaviors to represent a 
+Person as a content in a Plone site.
 
 Requirements
 ------------
 
-    - Plone >=4.0.x (http://plone.org/products/plone)
+    * Plone >=4.0.x (http://plone.org/products/plone)
     
+    * Dexterity >=1.1 (http://plone.org/products/dexterity)
+
 Installation
 ------------
     
