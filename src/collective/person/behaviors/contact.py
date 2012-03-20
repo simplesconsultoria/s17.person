@@ -9,31 +9,90 @@ from zope.interface import implements
 
 from plone.directives import form
 
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
+from collective.z3cform.datagridfield import DataGridFieldFactory
+from collective.z3cform.datagridfield import DictRow
+
 from collective.person.content.person import IPerson
 
 from collective.person import MessageFactory as _
+
+
+item_options = SimpleVocabulary(
+    [SimpleTerm(value=u'work', title=_(u'Work')),
+     SimpleTerm(value=u'home', title=_(u'Home'))])
+
+
+im_options = SimpleVocabulary(
+    [SimpleTerm(value=u'aim', title=_(u'AIM')),
+     SimpleTerm(value=u'facebook', title=_(u'Facebook')),
+     SimpleTerm(value=u'gadu-gadu', title=_(u'Gadu-Gadu')),
+     SimpleTerm(value=u'gtalk', title=_(u'Google Talk')),
+     SimpleTerm(value=u'icq', title=_(u'ICQ')),
+     SimpleTerm(value=u'jabber', title=_(u'Jabber')),
+     SimpleTerm(value=u'msn', title=_(u'MSN')),
+     SimpleTerm(value=u'skype', title=_(u'Skype')),
+     SimpleTerm(value=u'yahoo', title=_(u'Yahoo'))])
+
+
+class InvalidInformation(Invalid):
+    __doc__ = _(u"Please fix the provided information.")
+
+
+class IContactItem(Interface):
+    ''' An item in a list of contact information '''
+
+    category = schema.Choice(
+        title=u"Category",
+        source=item_options,
+        required=True)
+
+    data = schema.TextLine(
+        title=_(u"Value"),
+        required=True)
+
+
+class IIMItem(Interface):
+    ''' An item in a list of instant messengers '''
+
+    category = schema.Choice(
+        title=u"Category",
+        source=im_options,
+        required=True)
 
 
 class IContactInfo(form.Schema):
     '''Behavior providing contact info for an IPerson
     '''
 
+    form.widget(emails=DataGridFieldFactory)
     emails = schema.List(
             title=_(u'E-mails'),
             description=_(u'Please inform emails for this person.'),
             required=False,
+            value_type=DictRow(title=_(u'E-mails'),
+                               schema=IContactItem),
+            default=[],
         )
 
+    form.widget(instant_messengers=DataGridFieldFactory)
     instant_messengers = schema.List(
             title=_(u'Instant Messengers'),
             description=_(u'Instant messangers for this person.'),
+            value_type=DictRow(title=_(u'Instant Messengers'),
+                               schema=IIMItem),
             required=False,
         )
 
+    form.widget(telephones=DataGridFieldFactory)
     telephones = schema.List(
             title=_(u'Telephones'),
             description=_(u'Please inform telephones for this person.'),
             required=False,
+            value_type=DictRow(title=_(u'Telephones'),
+                               schema=IContactItem),
+            default=[],
         )
 
 
