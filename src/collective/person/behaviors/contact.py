@@ -6,6 +6,9 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
 from zope.interface import alsoProvides
 from zope.interface import implements
+from zope.interface import Interface
+from zope.interface import invariant
+from zope.interface import Invalid
 
 from plone.directives import form
 
@@ -15,6 +18,9 @@ from collective.z3cform.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield import DictRow
 
 from collective.person.content.person import IPerson
+
+from collective.person.utils import validate_email
+from collective.person.utils import validate_telephone
 
 from collective.person import MessageFactory as _
 
@@ -94,6 +100,31 @@ class IContactInfo(form.Schema):
                                schema=IContactItem),
             default=[],
         )
+
+    @invariant
+    def validate_emails(data):
+        ''' Validate provided emails '''
+        emails = data.emails
+        if emails:
+            for line in emails:
+                email = line.get('data', '')
+                if email and not validate_email(email):
+                    return InvalidInformation(_(u'Invalid E-mail'))
+
+    @invariant
+    def validate_instant_messengers(data):
+        ''' Validate provided instant messengers '''
+        pass
+
+    @invariant
+    def validate_telephones(data):
+        ''' Validate provided telephones '''
+        telephones = data.telephones
+        if telephones:
+            for line in telephones:
+                phone = line.get('data', '')
+                if phone and not validate_telephone(phone):
+                    return InvalidInformation(_(u'Invalid Phone Number'))
 
 
 alsoProvides(IContactInfo, form.IFormFieldProvider)
