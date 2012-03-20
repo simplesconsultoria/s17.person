@@ -1,9 +1,13 @@
 # -*- coding:utf-8 -*-
+import re
+from string import digits
 from datetime import date
 from datetime import datetime
 from DateTime import DateTime
 
 from zope.interface import Invalid
+
+from Products.validation import validation
 
 from collective.person import MessageFactory as _
 
@@ -62,3 +66,67 @@ def check_birthday(value):
         raise Invalid(_(u"Birthday must be a date in the past."))
     else:
         return True
+
+
+def validate_email(value):
+    ''' Validate email using Products.validation
+
+        >>> validate_email('foo@bar.org') == 1
+        True
+
+        >>> validate_email('foo@bar.com') == 1
+        True
+
+        >>> validate_email('+@bar.com') == 1
+        True
+
+        >>> validate_email('1@ee.br') == 1
+        True
+
+        >>> try:
+        ...     validate_email('@bar.com')
+        ... except Invalid:
+        ...     print 'Invalid email'
+        Invalid email
+
+    '''
+    v = validation.validatorFor('isEmail')
+    if v(value) == 1:
+        return True
+    else:
+        raise Invalid(_(u"The informed email is invalid."))
+
+
+def validate_telephone(value):
+    ''' Validate a phone number
+
+        >>> validate_telephone('+551138982121')
+        True
+
+        >>> validate_telephone('+55(11)3898.2121')
+        True
+
+        >>> validate_telephone('+55-11-3898-2121')
+        True
+
+        >>> try:
+        ...     validate_telephone('+55-11-3898-SIMP')
+        ... except Invalid:
+        ...     print 'Invalid phone'
+        Invalid phone
+
+        >>> try:
+        ...     validate_telephone('11-3898-2121')
+        ... except Invalid:
+        ...     print 'Invalid phone'
+        Invalid phone
+
+    '''
+    valid = digits + '+'
+    value = ''.join([c for c in value if c in valid])
+    pattern = re.compile('\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[854321]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{7,14}$')
+
+    if re.match(pattern, value):
+        return True
+    else:
+        raise Invalid(_(u"The informed phone number is invalid."))
