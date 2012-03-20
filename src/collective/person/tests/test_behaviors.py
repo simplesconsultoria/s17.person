@@ -185,6 +185,12 @@ class INameFromUserNameTest(unittest.TestCase):
         self.assertEquals(INameFromTitle(p1).title, 'dpetrovic')
 
 
+class MockContactInfo(object):
+    emails = []
+    instant_messengers = []
+    telephones = []
+
+
 class IContactInfoTest(unittest.TestCase):
 
     name = 'collective.person.behaviors.contact.IContactInfo'
@@ -223,22 +229,71 @@ class IContactInfoTest(unittest.TestCase):
         self.folder.invokeFactory('collective.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
-        adapter.emails = ['foo@bar.com', 'bar@foo.com']
+        adapter.emails = [{'category': 'work', 'data': 'foo@bar.com'},
+                          {'category': 'home', 'data': 'bar@foo.com'}]
         self.assertEquals(len(adapter.emails), 2)
+
+    def test_valid_emails(self):
+        data = MockContactInfo()
+        data.emails = [{'category': 'home',
+                        'data': 'foo@bar.com'},
+                       {'category': 'work',
+                        'data': 'bar@foo.com'}]
+        try:
+            IContactInfo.validateInvariants(data)
+        except Invalid:
+            self.fail()
+
+    def test_invalid_emails(self):
+        data = MockContactInfo()
+        # Wrong format
+        data.emails = [{'category': 'home',
+                        'data': 'ee.ee.br'}, ]
+        self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
     def test_instant_messengers(self):
         self.folder.invokeFactory('collective.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
-        adapter.instant_messengers = ['foo@bar.com', 'bar@foo.com']
+        adapter.instant_messengers = [{'category': 'gtalk',
+                                       'data': 'foo@bar.com'},
+                                      {'category': 'skype',
+                                       'data': 'bar@foo.com'}]
         self.assertEquals(len(adapter.instant_messengers), 2)
 
     def test_telephones(self):
         self.folder.invokeFactory('collective.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
-        adapter.telephones = ['555.1213', '316.9876']
+        adapter.telephones = [{'category': 'home',
+                               'data': '+5511555.1213'},
+                              {'category': 'work',
+                               'data': '+5511316.9876'}]
         self.assertEquals(len(adapter.telephones), 2)
+
+    def test_valid_telephones(self):
+        data = MockContactInfo()
+        data.telephones = [{'category': 'home',
+                           'data': '+5511555.1213'},
+                          {'category': 'work',
+                           'data': '+5511316.9876'}]
+        try:
+            IContactInfo.validateInvariants(data)
+        except Invalid:
+            self.fail()
+
+    def test_invalid_telephones(self):
+        data = MockContactInfo()
+        # No Country Code
+        data.telephones = [{'category': 'home',
+                           'data': '11555.1213'}, ]
+        self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
+
+        data = MockContactInfo()
+        # Letters, instead of numbers
+        data.telephones = [{'category': 'home',
+                            'data': '+5511555.SIMPLES'}, ]
+        self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
 
 def test_suite():
