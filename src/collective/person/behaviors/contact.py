@@ -67,6 +67,10 @@ class IIMItem(Interface):
         source=im_options,
         required=True)
 
+    data = schema.TextLine(
+        title=_(u"Value"),
+        required=True)
+
 
 class IContactInfo(form.Schema):
     '''Behavior providing contact info for an IPerson
