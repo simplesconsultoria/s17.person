@@ -295,6 +295,19 @@ class IContactInfoTest(unittest.TestCase):
                             'data': '+5511555.SIMPLES'}, ]
         self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
+    def test_telephones_indexed(self):
+        self.folder.invokeFactory('collective.person.person', 'p1')
+        p1 = self.folder['p1']
+        adapter = IContactInfo(p1)
+        adapter.telephones = [{'category': 'home',
+                               'data': '+5511555.1213'},
+                              {'category': 'work',
+                               'data': '+5511316.9876'}]
+        p1.reindexObject()
+        results = self.pc.searchResults(portal_type='collective.person.person',
+                                        telephones='home:+5511555.1213')
+        self.assertEquals(len(results), 1)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
