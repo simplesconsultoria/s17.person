@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from five import grok
 from zope import schema
 
 from zope.annotation.interfaces import IAnnotations
@@ -12,12 +13,16 @@ from zope.interface import Invalid
 
 from plone.directives import form
 
+from plone.indexer import indexer
+
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 from collective.z3cform.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield import DictRow
 
 from collective.person.content.person import IPerson
+
+from collective.person.catalog import IPersonCatalog
 
 from collective.person.utils import validate_email
 from collective.person.utils import validate_telephone
@@ -167,3 +172,39 @@ class ContactInfo(object):
     @telephones.setter
     def telephones(self, value):
         self.annotation['collective.person.telephones'] = value
+
+
+@indexer(IContactInfo, IPersonCatalog)
+def person_emails(obj):
+    ''' index emails
+    '''
+    person = IContactInfo(obj)
+    if person.emails:
+        return person.emails
+
+grok.global_adapter(person_emails,
+                    name="emails")
+
+
+@indexer(IContactInfo, IPersonCatalog)
+def person_instant_messengers(obj):
+    ''' index instant_messengers
+    '''
+    person = IContactInfo(obj)
+    if person.instant_messengers:
+        return person.instant_messengers
+
+grok.global_adapter(person_instant_messengers,
+                    name="instant_messengers")
+
+
+@indexer(IContactInfo, IPersonCatalog)
+def person_telephones(obj):
+    ''' index telephones
+    '''
+    person = IContactInfo(obj)
+    if person.telephones:
+        return person.telephones
+
+grok.global_adapter(person_telephones,
+                    name="telephones")

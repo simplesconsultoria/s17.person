@@ -80,6 +80,18 @@
  <index name="has_portrait" meta_type="BooleanIndex">
   <indexed_attr value="has_portrait"/>
  </index>
+
+ <!-- Contact Info Behavior -->
+ <index name="emails" meta_type="KeywordIndex">
+  <indexed_attr value="emails"/>
+ </index>
+  <index name="instant_messengers" meta_type="KeywordIndex">
+  <indexed_attr value="instant_messengers"/>
+ </index>
+  <index name="telephones" meta_type="KeywordIndex">
+  <indexed_attr value="telephones"/>
+ </index>
+
  <!-- Metadata -->
  <column value="UID" />
  <column value="Type" />
@@ -95,4 +107,8 @@
  <column value="surname"/>
  <column value="birthday"/>
  <column value="has_portrait"/>
+
+ <column value="emails"/>
+ <column value="instant_messengers"/>
+ <column value="telephones"/>
 </object>
