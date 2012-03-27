@@ -82,15 +82,23 @@
  </index>
 
  <!-- Contact Info Behavior -->
- <index name="emails" meta_type="KeywordIndex">
+ <index name="emails" meta_type="ZCTextIndex">
   <indexed_attr value="emails"/>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
  </index>
-  <index name="instant_messengers" meta_type="KeywordIndex">
+
+ <index name="instant_messengers" meta_type="ZCTextIndex">
   <indexed_attr value="instant_messengers"/>
- </index>
-  <index name="telephones" meta_type="KeywordIndex">
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index> 
+
+ <index name="telephones" meta_type="ZCTextIndex">
   <indexed_attr value="telephones"/>
- </index>
+  <extra name="index_type" value="Okapi BM25 Rank"/>
+  <extra name="lexicon_id" value="plone_lexicon"/>
+ </index> 
 
  <!-- Metadata -->
  <column value="UID" />
