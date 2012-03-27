@@ -174,7 +174,7 @@ class ContactInfo(object):
         self.annotation['collective.person.telephones'] = value
 
 
-@indexer(IContactInfo, IPersonCatalog)
+@indexer(IPerson, IPersonCatalog)
 def person_emails(obj):
     ''' index emails
     '''
@@ -188,7 +188,7 @@ grok.global_adapter(person_emails,
                     name="emails")
 
 
-@indexer(IContactInfo, IPersonCatalog)
+@indexer(IPerson, IPersonCatalog)
 def person_instant_messengers(obj):
     ''' index instant_messengers
     '''
@@ -202,7 +202,7 @@ grok.global_adapter(person_instant_messengers,
                     name="instant_messengers")
 
 
-@indexer(IContactInfo, IPersonCatalog)
+@indexer(IPerson, IPersonCatalog)
 def person_telephones(obj):
     ''' index telephones
     '''
