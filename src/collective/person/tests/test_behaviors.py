@@ -200,6 +200,7 @@ class IContactInfoTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.pt = self.portal.portal_types
+        self.pc = self.portal['portal_personcatalog']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Folder', 'test-folder')
         self.folder = self.portal['test-folder']
