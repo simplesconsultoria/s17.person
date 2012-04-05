@@ -178,8 +178,8 @@ class ContactInfo(object):
 def person_emails(obj):
     ''' index emails
     '''
-    person = IContactInfo(obj)
-    if person.emails:
+    person = IContactInfo(obj, None)
+    if person and person.emails:
         data = ['%s:%s' % (i['category'], i['data'])
                 for i in person.emails]
         return data
@@ -192,8 +192,8 @@ grok.global_adapter(person_emails,
 def person_instant_messengers(obj):
     ''' index instant_messengers
     '''
-    person = IContactInfo(obj)
-    if person.instant_messengers:
+    person = IContactInfo(obj, None)
+    if person and person.instant_messengers:
         data = ['%s:%s' % (i['category'], i['data'])
                 for i in person.instant_messengers]
         return data
@@ -206,8 +206,8 @@ grok.global_adapter(person_instant_messengers,
 def person_telephones(obj):
     ''' index telephones
     '''
-    person = IContactInfo(obj)
-    if person.telephones:
+    person = IContactInfo(obj, None)
+    if person and person.telephones:
         data = ['%s:%s' % (i['category'], i['data'])
                 for i in person.telephones]
         return data
