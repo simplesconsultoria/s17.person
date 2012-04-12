@@ -27,7 +27,7 @@ def validate_user_name(value):
     results = pc.searchResults(object_provides=IPerson.__identifier__,
                                id=value)
     if len(results) > 0:
-        return _(u'There is a person already asigned to this username')
+        return _(u'There is a person already assigned to this username')
 
 
 class IPloneUser(form.Schema):

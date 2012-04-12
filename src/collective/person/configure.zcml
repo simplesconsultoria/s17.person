@@ -8,6 +8,7 @@
 
     <five:registerPackage package="." />
     <includeDependencies package="." />
+    <i18n:registerTranslations directory="locales" />
 
     <!-- Permissions -->
     <permission

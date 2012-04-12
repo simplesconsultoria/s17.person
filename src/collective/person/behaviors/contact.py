@@ -94,7 +94,7 @@ class IContactInfo(form.Schema):
     form.widget(instant_messengers=DataGridFieldFactory)
     instant_messengers = schema.List(
             title=_(u'Instant Messengers'),
-            description=_(u'Instant messangers for this person.'),
+            description=_(u'Instant messengers for this person.'),
             value_type=DictRow(title=_(u'Instant Messengers'),
                                schema=IIMItem),
             required=False,

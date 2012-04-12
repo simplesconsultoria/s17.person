@@ -1,0 +1,162 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-03-09 19:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.person\n"
+
+#: collective/person/profiles.zcml:9
+msgid "collective.person: Install"
+msgstr ""
+
+#: collective/person/profiles.zcml:18
+msgid "Uninstall collective.person"
+msgstr ""
+
+#: collective/person/behaviors/configure.zcml:12
+msgid "Person-Plone User Bridge"
+msgstr ""
+
+#: collective/person/behaviors/configure.zcml:13
+msgid "Integrates a Person-ish content type to a Plone user"
+msgstr ""
+
+#: collective/person/behaviors/configure.zcml:20
+msgid "Contact Info"
+msgstr ""
+
+#: collective/person/behaviors/configure.zcml:21
+msgid "Basic contact information behavior for Person-ish content types to a Plone user"
+msgstr ""
+
+#: collective/person/behaviors/configure.zcml:30
+msgid "Name from user name"
+msgstr ""
+
+#: collective/person/behaviors/configure.zcml:31
+msgid "Use the user name field as name (basis for the id)"
+msgstr ""
+
+#: collective/person/profiles/default/types/collective.person.person.xml:8
+msgid "Person"
+msgstr ""
+
+#: collective/person/content/person.py:27
+msgid "Female"
+msgstr ""
+
+#: collective/person/content/person.py:28
+msgid "Male"
+msgstr ""
+
+#: collective/person/content/person.py:29
+msgid "Rather not say"
+msgstr ""
+
+#: collective/person/content/person.py:37
+msgid "First Name"
+msgstr ""
+
+#: collective/person/content/person.py:38
+msgid "First name of this person."
+msgstr ""
+
+#: collective/person/content/person.py:43
+msgid "Surname"
+msgstr ""
+
+#: collective/person/content/person.py:44
+msgid "Surname of this person."
+msgstr ""
+
+#: collective/person/content/person.py:49
+msgid "Gender"
+msgstr ""
+
+#: collective/person/content/person.py:56
+msgid "Birthday"
+msgstr ""
+
+#: collective/person/content/person.py:57
+msgid "Birthday of this person."
+msgstr ""
+
+#: collective/person/content/person.py:63
+msgid "Portrait"
+msgstr ""
+
+#: collective/person/content/person.py:64
+msgid "Please provide a portrait for this person."
+msgstr ""
+
+#: collective/person/behaviors/user.py:30
+msgid "There is a person already asigned to this username"
+msgstr ""
+
+#: collective/person/behaviors/user.py:39
+msgid "Username"
+msgstr ""
+
+#: collective/person/behaviors/user.py:40
+msgid "Please inform a username to be used."
+msgstr ""
+
+#: collective/person/behaviors/contact.py:34
+msgid "Work"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:35
+msgid "Home"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:51
+msgid "Please fix the provided information."
+msgstr ""
+
+#: collective/person/behaviors/contact.py:58
+msgid "Category"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:63
+msgid "Value"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:87
+msgid "Please inform emails for this person."
+msgstr ""
+
+#: collective/person/behaviors/contact.py:96
+msgid "Instant messengers"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:97
+msgid "Instant messengers for this person."
+msgstr ""
+
+#: collective/person/behaviors/contact.py:105
+msgid "Telephones"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:106
+msgid "Please inform telephones for this person."
+msgstr ""
+
+#: collective/person/behaviors/contact.py:121
+msgid "Invalid E-mail"
+msgstr ""
+
+#: collective/person/behaviors/contact.py:136
+msgid "Invalid Phone Number"
+msgstr ""
