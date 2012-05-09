@@ -1,0 +1,60 @@
+*** Settings ***
+
+Resource  plone.txt
+
+Suite Setup  Setup
+
+*** Variables ***
+
+*** Test cases ***
+
+Test Add Person
+    Goto Homepage
+    Add Person  Douglas  Adams
+
+Test Edit Person
+    Goto Homepage
+    Edit Person  Douglas Adams  m  11  3  1952
+
+Test Remove Person
+    Goto Homepage
+    Remove Person  Douglas Adams
+    Page Should Contain  Plone site
+
+*** Keywords ***
+
+Setup
+    Log In  admin  admin
+
+Add Person
+    [arguments]  ${given_name}  ${surname}
+
+    Open Add New Menu
+    Click Link  css=a#collective-person-person
+    Page Should Contain  Add Person
+    Input Text  css=input#form-widgets-given_name  ${given_name}
+    Input Text  css=input#form-widgets-surname  ${surname}
+    Click Button  Save
+    Page Should Contain  Item created
+
+Edit Person
+    [arguments]  ${person}  ${gender}  ${day}  ${month}  ${year}
+
+    Click Link  ${person}
+    Click Link  Edit
+    Page Should Contain  Edit Person
+    Select From List  css=select#form-widgets-gender  ${gender}
+    Input Text  css=input#form-widgets-birthday-day  ${day}
+    Select From List  css=select#form-widgets-birthday-month  ${month}
+    Input Text  css=input#form-widgets-birthday-year  ${year}
+    Click Button  Save
+    Page Should Contain  Changes saved
+
+Remove Person
+    [arguments]  ${person}
+
+    Click Link  ${person}
+    Click Delete Action
+    Wait Until Page Contains  Do you really want to delete this item?
+    Click Button  Delete
+
