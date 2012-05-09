@@ -4,11 +4,15 @@
 *.pyc
 .installed.cfg
 .mr.developer.cfg
+log.html
+output.xml
+report.html
+selenium*
 bin/
 develop-eggs/
 downloads/
 eggs/
+include/
+lib/
 parts/
 var/
-products/
-versions.cfg
