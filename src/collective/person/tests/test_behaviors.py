@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# FIXME: There's something wrong with this module; it is breaking the
+# IReferenceable behavior on the test_content module
+
 import unittest2 as unittest
 
 from five import grok
