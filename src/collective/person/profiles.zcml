@@ -22,6 +22,14 @@
         i18n:attributes="title; description"
         />
 
+     <genericsetup:registerProfile
+        name="demo"
+        title="collective.person: Demo profile"
+        directory="profiles/demo"
+        description="Add content for demos"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
 
     <genericsetup:importStep
         name="collective.person-upgrades"
@@ -46,5 +54,12 @@
        description=""
        handler="collective.person.exportimport.catalog.exportPersonCatalog"
      />
+
+     <genericsetup:importStep
+       name="collective.person-demo-steps"
+       title="collective.person: Demo steps"
+       description="Do all things necessary to set the demo."
+       handler=".setuphandlers.demo_steps">
+    </genericsetup:importStep>
 
 </configure>

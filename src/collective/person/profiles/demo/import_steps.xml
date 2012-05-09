@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="collective.person-demo-steps" version="20120508-16"
+                 handler="collective.person.setuphandlers.demo_steps"
+                 title="collective.person: Demo steps">
+    </import-step>
+    Demo steps collective.person
+</import-steps>
