@@ -51,8 +51,8 @@ class IntegrationTest(unittest.TestCase):
     def test_is_referenceable(self):
         self.folder.invokeFactory('collective.person.person', 'p1')
         p1 = self.folder['p1']
-        self.assertTrue(IAttributeUUID.providedBy(p1))
         self.assertTrue(IReferenceable.providedBy(p1))
+        self.assertTrue(IAttributeUUID.providedBy(p1))
 
     def test_title(self):
         self.folder.invokeFactory('collective.person.person', 'p1')
@@ -75,7 +75,3 @@ class IntegrationTest(unittest.TestCase):
         birthday = date(2069, 7, 21)
         # Date is in the future
         self.assertRaises(Invalid, IPerson['birthday'].validate, birthday)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

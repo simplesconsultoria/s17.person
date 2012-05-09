@@ -14,11 +14,6 @@ class Fixture(PloneSandboxLayer):
         # Load ZCML
         import collective.person
         self.loadZCML(package=collective.person)
-        #XXX: We should not have this here but...
-        import plone.app.dexterity
-        self.loadZCML(package=plone.app.dexterity)
-        import plone.app.referenceablebehavior
-        self.loadZCML(package=plone.app.referenceablebehavior)
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 import unittest2 as unittest
 
 from five import grok
-from zope.component import queryUtility
 
+from zope.component import queryUtility
 from zope.interface import Invalid
 
 from plone.app.testing import TEST_USER_ID
@@ -21,7 +22,6 @@ from collective.person.behaviors.contact import IContactInfo
 
 from collective.person.behaviors.user import INameFromUserName
 from collective.person.behaviors.user import IPloneUser
-
 
 from collective.person.testing import INTEGRATION_TESTING
 
@@ -308,7 +308,3 @@ class IContactInfoTest(unittest.TestCase):
         results = self.pc.searchResults(portal_type='collective.person.person',
                                         telephones='home:+5511555.1213')
         self.assertEquals(len(results), 1)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

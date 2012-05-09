@@ -5,8 +5,6 @@ import unittest2 as unittest
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
-from collective.person.content.person import IPerson
-
 from collective.person.testing import INTEGRATION_TESTING
 
 
@@ -116,7 +114,3 @@ class IntegrationTest(unittest.TestCase):
         self.assertEquals(len(results), 0)
         results = self.ct.searchResults(portal_type='collective.person.person')
         self.assertEquals(len(results), 0)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
