@@ -91,7 +91,7 @@ def validate_email(value):
 
     '''
     v = validation.validatorFor('isEmail')
-    if v(value) == 1:
+    if v(str(value)) == 1:
         return True
     else:
         raise Invalid(_(u"The informed email is invalid."))
