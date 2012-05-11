@@ -52,13 +52,18 @@ def demo_steps(context):
     if context.readDataFile('collective.person-demo.txt') is None:
         return
     portal = context.getSite()
-    portal.invokeFactory('Folder', 'Pessoas')
-    folder = portal['Pessoas']
-    list_users = [{'name':'marcelo-santos', 'password':'pass1', 'number': '1'},
-                  {'name':'rodrigo-alves', 'password':'pass2', 'number': '2'},
-                  {'name':'julia-Alvarez', 'password':'pass3', 'number': '3'},
-                  {'name':'juan-perez', 'password':'pass4', 'number': '4'},
-                  {'name':'gustavo-roner', 'password':'pass5', 'number': '5'}]
+    portal.invokeFactory('Folder', 'Persons')
+    folder = portal['Persons']
+    list_users = [{'name':'marcelo-santos', 'password':'marcelo',
+                    'number': '1', 'birthday': (1985, 2, 17)},
+                  {'name':'marcelo-alves', 'password':'marcelo',
+                   'number': '2', 'birthday': (1983, 6, 01)},
+                  {'name':'julia-alvarez', 'password':'julia',
+                   'number': '3', 'birthday': (1988, 10, 26)},
+                  {'name':'juan-perez', 'password':'juan',
+                   'number': '4', 'birthday': (1981, 1, 15)},
+                  {'name':'gustavo-roner', 'password':'gustavo',
+                   'number': '5', 'birthday': (1986, 2, 15)}]
 
     for user in list_users:
         create_user(user['name'], user['password'], portal)
@@ -73,16 +78,20 @@ def demo_steps(context):
     for user in list_users:
         person = user['name']
         fullname = person.split('-')
+        birthday = user['birthday']
         image = os.path.join(os.path.dirname(__file__), 'profiles', 'demo',
                              'images', 'picture%s.png' % user['number'])
         data = getFile(image).read()
         folder.invokeFactory('collective.person.person', person,
-            birthday=datetime.date(datetime(1985, 2, 17)),
+            birthday=datetime.date(datetime(birthday[0], birthday[1],
+                                   birthday[2])),
             picture=NamedImage(data),
             given_name=fullname[0].capitalize(),
             surname=fullname[1].capitalize(),
-            gender=u'n/a',
+            gender=u'm',
             )
+        if (person == 'julia-alvarez'):
+            folder[person].gender = 'f'
         p1_contact = IContactInfo(folder[person])
         p1_contact.emails = [{'category': u'work',
                                           'data': u'%s@simples.com.br' %
@@ -104,6 +113,9 @@ def demo_steps(context):
         if not review_state == 'published':
             folder[person].portal_workflow.doActionFor(folder[person],
                                                        'publish')
+    review_state = folder.portal_workflow.getInfoFor(folder, 'review_state')
+    if not review_state == 'published':
+        folder.portal_workflow.doActionFor(folder, 'publish')
 
     import transaction
     transaction.commit()
