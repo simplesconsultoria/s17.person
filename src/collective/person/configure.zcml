@@ -9,6 +9,7 @@
     <five:registerPackage package="." />
     <includeDependencies package="." />
     <i18n:registerTranslations directory="locales" />
+    <include package="borg.localrole" />
 
     <!-- Permissions -->
     <permission
@@ -21,6 +22,12 @@
     <grok:grok package="." />
 
     <include file="profiles.zcml"/>
+
+    <adapter
+       factory=".adapter.PersonLocalRoleAdapter"
+       for="collective.person.content.person.IPerson"
+
+    />
 
     <!-- Export and Import Catalog -->
     <adapter factory=".exportimport.catalog.PersonCatalogXMLAdapter"/>
