@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="example.conference">
+      i18n:domain="collective.person">
     <body>
 
     <metal:main fill-slot="main">
@@ -44,7 +44,7 @@
                 <div tal:content="structure view/w/birthday/render" />
             </div>
 
-            <div class="field">
+            <div class="field person-portrait">
                 <label> Portrait </label>
                 <br />
                 <div tal:content="structure view/w/picture/render" />

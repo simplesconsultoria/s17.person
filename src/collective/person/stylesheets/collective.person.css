@@ -1,0 +1,4 @@
+.person-portrait #form-widgets-picture img{
+    max-width: 200px;
+    height: auto;
+}
