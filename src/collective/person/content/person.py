@@ -197,3 +197,9 @@ class Person(dexterity.Item):
     def fullname(self):
         ''' A person's fullname '''
         return '%s %s' % (self.given_name, self.surname)
+
+
+class View(dexterity.DisplayForm):
+    grok.context(IPerson)
+    grok.require('zope2.View')
+    grok.name('view')
