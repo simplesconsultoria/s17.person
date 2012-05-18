@@ -1,0 +1,32 @@
+Functional test:
+
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> request = layer['request']
+
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> portalURL = portal.absolute_url()
+
+    >>> from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+    >>> browser.open(portalURL + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = 'marcelo-alves'
+    >>> browser.getControl(name='__ac_password').value = 'marcelo'
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'You are now logged in' in browser.contents
+    True
+
+Test edit permission:
+
+    >>> browser.getLink('Persons').click()
+    >>> browser.getLink('Marcelo Alves').click()
+    >>> 'Edit' in browser.contents
+    True
+
+Test not edit permission:
+
+    >>> browser.getLink('Persons').click()
+    >>> browser.getLink('Marcelo Santos').click()
+    >>> 'Edit' in browser.contents
+    False
