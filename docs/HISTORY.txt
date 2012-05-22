@@ -1,6 +1,19 @@
 Changelog
 ----------
 
+1.1dev (2012-05-22)
+^^^^^^^^^^^^^^^^^^^
+
+- A demo profile added. [aleGpereira]
+
+- Fix a bug in email validator. [aleGpereira]
+
+- Edit permission added to member linked with person object and test cases for this. [aleGpereira]
+
+- A custom template assigned to person content type. [aleGpereira]
+
+- Standardized image of person profile to 200px. [aleGpereira]
+
 1.0dev (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
