@@ -10,6 +10,9 @@ from plone.app.testing import setRoles
 
 from plone.app.referenceablebehavior.referenceable import IReferenceable
 from plone.dexterity.interfaces import IDexterityFTI
+
+from plone.dexterity.schema import SCHEMA_CACHE
+
 from plone.uuid.interfaces import IAttributeUUID
 
 from collective.person.content.person import IPerson
@@ -25,6 +28,8 @@ class IntegrationTest(unittest.TestCase):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Folder', 'test-folder')
+        # Invalidate schema cache
+        SCHEMA_CACHE.invalidate('collective.person.person')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
 
