@@ -20,6 +20,8 @@ from Products.CMFCore.utils import getToolByName
 from collective.person.utils import check_birthday
 from collective.person.catalog import IPersonCatalog
 
+from datetime import datetime
+
 from collective.person import MessageFactory as _
 
 
@@ -73,7 +75,10 @@ def person_cooked_birthday(obj):
         in a easy way
     '''
     if obj.birthday:
-        cooked = obj.birthday.strftime('%m%d')
+        date = obj.birthday
+        # strftime method of datetime objects have an artificial
+        # constraint on years prior to 1900 that is harmfull here.
+        cooked = "%02d%02d" % (date.month, date.day)
         return cooked
 
 grok.global_adapter(person_cooked_birthday,
