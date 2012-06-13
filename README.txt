@@ -3,10 +3,9 @@ collective.person
 *****************
 
 .. contents:: Table of Contents
-   :depth: 2
 
-Overview
---------
+Life, the Universe, and Everything
+----------------------------------
 
 A package containing a Dexterity content type and behaviors to represent a
 Person as a content in a Plone site.
@@ -32,4 +31,11 @@ with five person items in wich each one have a base of information with a
 picture.
 
 With this option you can have a quick view to see what this product offers.
+
+Mostly Harmless
+---------------
+
+Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/collective.person/issues
 

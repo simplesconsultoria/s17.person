@@ -1,10 +1,14 @@
 Changelog
 ----------
 
+Because you have to know where your towel is.
+
 1.0a3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Avoid crash when birthday year is prior to 1900. [jsbueno]
+
+- Invalidate SCHEMA_CACHE in order to get the real behaviors. [ericof]
 
 
 1.0a2 (2012-05-23)
