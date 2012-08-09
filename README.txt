@@ -36,6 +36,7 @@ Mostly Harmless
 ---------------
 
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+    :target: http://travis-ci.org/collective/collective.person
 
 .. _`opening a support ticket`: https://github.com/simplesconsultoria/collective.person/issues
 
