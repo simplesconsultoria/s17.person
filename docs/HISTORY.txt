@@ -6,7 +6,8 @@ Because you have to know where your towel is.
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix problem with collective.z3cform.datagridfield dependency
+  install. [aleGpereira]
 
 
 1.0a3 (2012-06-13)
