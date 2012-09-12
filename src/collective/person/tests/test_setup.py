@@ -40,6 +40,11 @@ class TestInstall(BaseTestCase):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
                         '%s not installed' % PROJECTNAME)
 
+    def test_installed_datagridfield(self):
+        dependency = 'collective.z3cform.datagridfield'
+        self.assertTrue(self.qi.isProductInstalled(dependency),
+                        '%s not installed' % dependency)
+
     def test_catalog_installed(self):
         self.assertTrue('portal_personcatalog' in self.portal.objectIds(),
                         'Catalog not installed')
