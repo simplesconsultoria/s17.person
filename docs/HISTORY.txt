@@ -6,6 +6,11 @@ Because you have to know where your towel is.
 1.0a5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Deprecate use on Plone 4.1; we will support only Plone>=4.2. [hvelarde]
+
+- Import getSite from zope.component to avoid dependency on
+  zope.app.component. [hvelarde]
+
 - Rename content type from "s17.person.person" to "Person". [hvelarde]
 
 - Rename package from collective.person to s17.person. [hvelarde]
