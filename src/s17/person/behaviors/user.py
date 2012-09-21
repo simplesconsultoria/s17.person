@@ -7,7 +7,7 @@ from zope.component import adapts
 from zope.interface import alsoProvides
 from zope.interface import implements
 from zope.interface import Interface
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 from zope.interface import Invalid, invariant
 
 from plone.directives import form
