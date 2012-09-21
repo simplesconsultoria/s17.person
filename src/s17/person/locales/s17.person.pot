@@ -21,7 +21,7 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: s17/person/profiles/default/types/s17.person.person.xml
+#: s17/person/profiles/default/types/Person.xml
 msgid "A person"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Male"
 msgstr ""
 
-#: s17/person/profiles/default/types/s17.person.person.xml
+#: s17/person/profiles/default/types/Person.xml
 msgid "Person"
 msgstr ""
 

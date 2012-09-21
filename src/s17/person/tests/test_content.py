@@ -29,38 +29,38 @@ class IntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Folder', 'test-folder')
         # Invalidate schema cache
-        SCHEMA_CACHE.invalidate('s17.person.person')
+        SCHEMA_CACHE.invalidate('Person')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
 
     def test_adding(self):
-        self.folder.invokeFactory('s17.person.person', 'p1')
+        self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
         self.assertTrue(IPerson.providedBy(p1))
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='s17.person.person')
+        fti = queryUtility(IDexterityFTI, name='Person')
         self.assertNotEquals(None, fti)
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='s17.person.person')
+        fti = queryUtility(IDexterityFTI, name='Person')
         schema = fti.lookupSchema()
         self.assertEquals(IPerson, schema)
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='s17.person.person')
+        fti = queryUtility(IDexterityFTI, name='Person')
         factory = fti.factory
         new_object = createObject(factory)
         self.assertTrue(IPerson.providedBy(new_object))
 
     def test_is_referenceable(self):
-        self.folder.invokeFactory('s17.person.person', 'p1')
+        self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
         self.assertTrue(IReferenceable.providedBy(p1))
         self.assertTrue(IAttributeUUID.providedBy(p1))
 
     def test_title(self):
-        self.folder.invokeFactory('s17.person.person', 'p1')
+        self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
         p1.given_name = 'James T.'
         p1.surname = 'Kirk'

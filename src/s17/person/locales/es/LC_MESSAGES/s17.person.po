@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: s17.person\n"
 
-#: s17/person/profiles/default/types/s17.person.person.xml
+#: s17/person/profiles/default/types/Person.xml
 msgid "A person"
 msgstr "Una persona"
 
@@ -102,7 +102,7 @@ msgstr "MSN"
 msgid "Male"
 msgstr "Masculino"
 
-#: s17/person/profiles/default/types/s17.person.person.xml
+#: s17/person/profiles/default/types/Person.xml
 msgid "Person"
 msgstr "Persona"
 

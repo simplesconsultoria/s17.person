@@ -64,7 +64,7 @@ class IPloneUserTest(unittest.TestCase):
         behaviors = []
         behaviors.append(self.name)
         fti = queryUtility(IDexterityFTI,
-                           name='s17.person.person')
+                           name='Person')
         fti.behaviors = tuple(behaviors)
         self.setUpUsers()
 
@@ -74,12 +74,12 @@ class IPloneUserTest(unittest.TestCase):
 
     def test_set_in_person(self):
         fti = queryUtility(IDexterityFTI,
-                           name='s17.person.person')
+                           name='Person')
         behaviors = fti.behaviors
         self.assertTrue(self.name in behaviors)
 
     def test_adapt_content(self):
-        self.folder.invokeFactory('s17.person.person', 'p1')
+        self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
         plone_user = IPloneUser(p1)
         self.assertNotEquals(None, plone_user)
@@ -98,7 +98,7 @@ class IPloneUserTest(unittest.TestCase):
         class MockUser(object):
             user_name = ''
         # Create a person
-        self.folder.invokeFactory('s17.person.person', 'user1')
+        self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         plone_user = IPloneUser(user1)
         plone_user.user_name = 'user1'
@@ -112,7 +112,7 @@ class IPloneUserTest(unittest.TestCase):
             user_name = ''
             __context__ = None
         # Create a person
-        self.folder.invokeFactory('s17.person.person', 'user1')
+        self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         plone_user = IPloneUser(user1)
         plone_user.user_name = 'user1'
@@ -129,7 +129,7 @@ class IPloneUserTest(unittest.TestCase):
             self.fail()
 
     def test_get_user(self):
-        self.folder.invokeFactory('s17.person.person', 'user1')
+        self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         adapter = IPloneUser(user1)
         adapter.user_name = 'user1'
@@ -210,7 +210,7 @@ class IContactInfoTest(unittest.TestCase):
         behaviors = []
         behaviors.append(self.name)
         fti = queryUtility(IDexterityFTI,
-                           name='s17.person.person')
+                           name='Person')
         fti.behaviors = tuple(behaviors)
 
     def test_registration(self):
@@ -219,18 +219,18 @@ class IContactInfoTest(unittest.TestCase):
 
     def test_set_in_person(self):
         fti = queryUtility(IDexterityFTI,
-                           name='s17.person.person')
+                           name='Person')
         behaviors = fti.behaviors
         self.assertTrue(self.name in behaviors)
 
     def test_adapt_content(self):
-        self.folder.invokeFactory('s17.person.person', 'p1')
+        self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
         adapter = IContactInfo(p1)
         self.assertNotEquals(None, adapter)
 
     def test_emails(self):
-        self.folder.invokeFactory('s17.person.person', 'user1')
+        self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
         adapter.emails = [{'category': 'work', 'data': 'foo@bar.com'},
@@ -256,7 +256,7 @@ class IContactInfoTest(unittest.TestCase):
         self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
     def test_instant_messengers(self):
-        self.folder.invokeFactory('s17.person.person', 'user1')
+        self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
         adapter.instant_messengers = [{'category': 'gtalk',
@@ -266,7 +266,7 @@ class IContactInfoTest(unittest.TestCase):
         self.assertEquals(len(adapter.instant_messengers), 2)
 
     def test_telephones(self):
-        self.folder.invokeFactory('s17.person.person', 'user1')
+        self.folder.invokeFactory('Person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
         adapter.telephones = [{'category': 'home',
@@ -300,7 +300,7 @@ class IContactInfoTest(unittest.TestCase):
         self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
     def test_telephones_indexed(self):
-        self.folder.invokeFactory('s17.person.person', 'p1')
+        self.folder.invokeFactory('Person', 'p1')
         p1 = self.folder['p1']
         adapter = IContactInfo(p1)
         adapter.telephones = [{'category': 'home',
@@ -308,6 +308,6 @@ class IContactInfoTest(unittest.TestCase):
                               {'category': 'work',
                                'data': '+5511316.9876'}]
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='s17.person.person',
+        results = self.pc.searchResults(portal_type='Person',
                                         telephones='home:+5511555.1213')
         self.assertEquals(len(results), 1)

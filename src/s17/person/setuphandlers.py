@@ -72,7 +72,7 @@ def demo_steps(context):
     behaviors = ['s17.person.behaviors.user.IPloneUser',
                  's17.person.behaviors.contact.IContactInfo']
     fti = queryUtility(IDexterityFTI,
-                        name='s17.person.person')
+                        name='Person')
     fti.behaviors = tuple(behaviors)
 
     for user in list_users:
@@ -82,7 +82,7 @@ def demo_steps(context):
         image = os.path.join(os.path.dirname(__file__), 'profiles', 'demo',
                              'images', 'picture%s.png' % user['number'])
         data = getFile(image).read()
-        folder.invokeFactory('s17.person.person', person,
+        folder.invokeFactory('Person', person,
             birthday=datetime.date(datetime(birthday[0], birthday[1],
                                    birthday[2])),
             picture=NamedImage(data),

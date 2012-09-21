@@ -27,7 +27,7 @@ class FixtureDemo(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         portal.portal_workflow.setChainForPortalTypes(
-             ['Folder', 's17.person.person'],
+             ['Folder', 'Person'],
              ['simple_publication_workflow'])
         self.applyProfile(portal, 's17.person:demo')
 

@@ -6,6 +6,8 @@ Because you have to know where your towel is.
 1.0a5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Rename content type from "s17.person.person" to "Person". [hvelarde]
+
 - Rename package from collective.person to s17.person. [hvelarde]
 
 
