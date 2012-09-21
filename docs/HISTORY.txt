@@ -6,6 +6,9 @@ Because you have to know where your towel is.
 1.0a5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Add plone.directives.dexterity as a dependency as required by Plone 4.3.
+  [hvelarde]
+
 - Deprecate use on Plone 4.1; we will support only Plone>=4.2. [hvelarde]
 
 - Import getSite from zope.component to avoid dependency on
