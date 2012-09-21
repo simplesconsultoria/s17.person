@@ -20,14 +20,14 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from collective.z3cform.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield import DictRow
 
-from collective.person.content.person import IPerson
+from s17.person.content.person import IPerson
 
-from collective.person.catalog import IPersonCatalog
+from s17.person.catalog import IPersonCatalog
 
-from collective.person.utils import validate_email
-from collective.person.utils import validate_telephone
+from s17.person.utils import validate_email
+from s17.person.utils import validate_telephone
 
-from collective.person import MessageFactory as _
+from s17.person import MessageFactory as _
 
 
 item_options = SimpleVocabulary(
@@ -151,27 +151,27 @@ class ContactInfo(object):
 
     @property
     def emails(self):
-        return self.annotation.get('collective.person.emails', [])
+        return self.annotation.get('s17.person.emails', [])
 
     @emails.setter
     def emails(self, value):
-        self.annotation['collective.person.emails'] = value
+        self.annotation['s17.person.emails'] = value
 
     @property
     def instant_messengers(self):
-        return self.annotation.get('collective.person.instant_messengers', [])
+        return self.annotation.get('s17.person.instant_messengers', [])
 
     @instant_messengers.setter
     def instant_messengers(self, value):
-        self.annotation['collective.person.instant_messengers'] = value
+        self.annotation['s17.person.instant_messengers'] = value
 
     @property
     def telephones(self):
-        return self.annotation.get('collective.person.telephones', [])
+        return self.annotation.get('s17.person.telephones', [])
 
     @telephones.setter
     def telephones(self, value):
-        self.annotation['collective.person.telephones'] = value
+        self.annotation['s17.person.telephones'] = value
 
 
 @indexer(IPerson, IPersonCatalog)

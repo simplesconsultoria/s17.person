@@ -16,18 +16,18 @@ from Products.CMFCore.utils import getToolByName
 
 from Products.GenericSetup.upgrade import listUpgradeSteps
 
-from collective.person.behaviors.contact import IContactInfo
-from collective.person.behaviors.user import IPloneUser
+from s17.person.behaviors.contact import IContactInfo
+from s17.person.behaviors.user import IPloneUser
 
 
-_PROJECT = 'collective.person'
-_PROFILE_ID = 'collective.person:default'
+_PROJECT = 's17.person'
+_PROFILE_ID = 's17.person:default'
 
 
 def run_upgrades(context):
     ''' Run Upgrade steps
     '''
-    if context.readDataFile('collective.person-default.txt') is None:
+    if context.readDataFile('s17.person-default.txt') is None:
         return
     logger = logging.getLogger(_PROJECT)
     site = context.getSite()
@@ -49,7 +49,7 @@ def run_upgrades(context):
 def demo_steps(context):
     """ Run steps to prepare a demo.
     """
-    if context.readDataFile('collective.person-demo.txt') is None:
+    if context.readDataFile('s17.person-demo.txt') is None:
         return
     portal = context.getSite()
     portal.invokeFactory('Folder', 'Persons')
@@ -69,10 +69,10 @@ def demo_steps(context):
         create_user(user['name'], user['password'], portal)
 
     # Set behaviors to person
-    behaviors = ['collective.person.behaviors.user.IPloneUser',
-                 'collective.person.behaviors.contact.IContactInfo']
+    behaviors = ['s17.person.behaviors.user.IPloneUser',
+                 's17.person.behaviors.contact.IContactInfo']
     fti = queryUtility(IDexterityFTI,
-                        name='collective.person.person')
+                        name='s17.person.person')
     fti.behaviors = tuple(behaviors)
 
     for user in list_users:
@@ -82,7 +82,7 @@ def demo_steps(context):
         image = os.path.join(os.path.dirname(__file__), 'profiles', 'demo',
                              'images', 'picture%s.png' % user['number'])
         data = getFile(image).read()
-        folder.invokeFactory('collective.person.person', person,
+        folder.invokeFactory('s17.person.person', person,
             birthday=datetime.date(datetime(birthday[0], birthday[1],
                                    birthday[2])),
             picture=NamedImage(data),

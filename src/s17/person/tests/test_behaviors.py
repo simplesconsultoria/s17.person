@@ -18,15 +18,15 @@ from plone.behavior.interfaces import IBehavior
 from plone.dexterity.fti import DexterityFTI
 from plone.dexterity.interfaces import IDexterityFTI
 
-from collective.person.content.person import Person
-from collective.person.content.person import IPerson
+from s17.person.content.person import Person
+from s17.person.content.person import IPerson
 
-from collective.person.behaviors.contact import IContactInfo
+from s17.person.behaviors.contact import IContactInfo
 
-from collective.person.behaviors.user import INameFromUserName
-from collective.person.behaviors.user import IPloneUser
+from s17.person.behaviors.user import INameFromUserName
+from s17.person.behaviors.user import IPloneUser
 
-from collective.person.testing import INTEGRATION_TESTING
+from s17.person.testing import INTEGRATION_TESTING
 
 
 class IPersonish(IPerson):
@@ -40,7 +40,7 @@ class Personish(Person):
 
 class IPloneUserTest(unittest.TestCase):
 
-    name = 'collective.person.behaviors.user.IPloneUser'
+    name = 's17.person.behaviors.user.IPloneUser'
 
     layer = INTEGRATION_TESTING
 
@@ -64,7 +64,7 @@ class IPloneUserTest(unittest.TestCase):
         behaviors = []
         behaviors.append(self.name)
         fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
+                           name='s17.person.person')
         fti.behaviors = tuple(behaviors)
         self.setUpUsers()
 
@@ -74,12 +74,12 @@ class IPloneUserTest(unittest.TestCase):
 
     def test_set_in_person(self):
         fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
+                           name='s17.person.person')
         behaviors = fti.behaviors
         self.assertTrue(self.name in behaviors)
 
     def test_adapt_content(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         plone_user = IPloneUser(p1)
         self.assertNotEquals(None, plone_user)
@@ -98,7 +98,7 @@ class IPloneUserTest(unittest.TestCase):
         class MockUser(object):
             user_name = ''
         # Create a person
-        self.folder.invokeFactory('collective.person.person', 'user1')
+        self.folder.invokeFactory('s17.person.person', 'user1')
         user1 = self.folder['user1']
         plone_user = IPloneUser(user1)
         plone_user.user_name = 'user1'
@@ -112,7 +112,7 @@ class IPloneUserTest(unittest.TestCase):
             user_name = ''
             __context__ = None
         # Create a person
-        self.folder.invokeFactory('collective.person.person', 'user1')
+        self.folder.invokeFactory('s17.person.person', 'user1')
         user1 = self.folder['user1']
         plone_user = IPloneUser(user1)
         plone_user.user_name = 'user1'
@@ -129,7 +129,7 @@ class IPloneUserTest(unittest.TestCase):
             self.fail()
 
     def test_get_user(self):
-        self.folder.invokeFactory('collective.person.person', 'user1')
+        self.folder.invokeFactory('s17.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IPloneUser(user1)
         adapter.user_name = 'user1'
@@ -138,7 +138,7 @@ class IPloneUserTest(unittest.TestCase):
 
 class INameFromUserNameTest(unittest.TestCase):
 
-    name = 'collective.person.behaviors.user.INameFromUserName'
+    name = 's17.person.behaviors.user.INameFromUserName'
 
     layer = INTEGRATION_TESTING
 
@@ -148,11 +148,11 @@ class INameFromUserNameTest(unittest.TestCase):
             factory='Personish',
             global_allow=True,
             behaviors=(
-                'collective.person.behaviors.user.IPloneUser',
-                'collective.person.behaviors.user.INameFromUserName',
+                's17.person.behaviors.user.IPloneUser',
+                's17.person.behaviors.user.INameFromUserName',
                 ),
-            schema='collective.person.tests.test_behaviors.IPersonish',
-            klass='collective.person.tests.test_behaviors.Personish'
+            schema='s17.person.tests.test_behaviors.IPersonish',
+            klass='s17.person.tests.test_behaviors.Personish'
         )
         self.pt._setObject('Personish', person_fti)
 
@@ -196,7 +196,7 @@ class MockContactInfo(object):
 
 class IContactInfoTest(unittest.TestCase):
 
-    name = 'collective.person.behaviors.contact.IContactInfo'
+    name = 's17.person.behaviors.contact.IContactInfo'
 
     layer = INTEGRATION_TESTING
 
@@ -210,7 +210,7 @@ class IContactInfoTest(unittest.TestCase):
         behaviors = []
         behaviors.append(self.name)
         fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
+                           name='s17.person.person')
         fti.behaviors = tuple(behaviors)
 
     def test_registration(self):
@@ -219,18 +219,18 @@ class IContactInfoTest(unittest.TestCase):
 
     def test_set_in_person(self):
         fti = queryUtility(IDexterityFTI,
-                           name='collective.person.person')
+                           name='s17.person.person')
         behaviors = fti.behaviors
         self.assertTrue(self.name in behaviors)
 
     def test_adapt_content(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         adapter = IContactInfo(p1)
         self.assertNotEquals(None, adapter)
 
     def test_emails(self):
-        self.folder.invokeFactory('collective.person.person', 'user1')
+        self.folder.invokeFactory('s17.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
         adapter.emails = [{'category': 'work', 'data': 'foo@bar.com'},
@@ -256,7 +256,7 @@ class IContactInfoTest(unittest.TestCase):
         self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
     def test_instant_messengers(self):
-        self.folder.invokeFactory('collective.person.person', 'user1')
+        self.folder.invokeFactory('s17.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
         adapter.instant_messengers = [{'category': 'gtalk',
@@ -266,7 +266,7 @@ class IContactInfoTest(unittest.TestCase):
         self.assertEquals(len(adapter.instant_messengers), 2)
 
     def test_telephones(self):
-        self.folder.invokeFactory('collective.person.person', 'user1')
+        self.folder.invokeFactory('s17.person.person', 'user1')
         user1 = self.folder['user1']
         adapter = IContactInfo(user1)
         adapter.telephones = [{'category': 'home',
@@ -300,7 +300,7 @@ class IContactInfoTest(unittest.TestCase):
         self.assertRaises(Invalid, IContactInfo.validateInvariants, data)
 
     def test_telephones_indexed(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         adapter = IContactInfo(p1)
         adapter.telephones = [{'category': 'home',
@@ -308,6 +308,6 @@ class IContactInfoTest(unittest.TestCase):
                               {'category': 'work',
                                'data': '+5511316.9876'}]
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='collective.person.person',
+        results = self.pc.searchResults(portal_type='s17.person.person',
                                         telephones='home:+5511555.1213')
         self.assertEquals(len(results), 1)

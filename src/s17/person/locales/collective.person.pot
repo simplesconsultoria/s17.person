@@ -3,7 +3,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: s17.person 1.0\n"
 "POT-Creation-Date: 2012-03-09 19:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -15,14 +15,14 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: collective.person\n"
+"Domain: s17.person\n"
 
 #: collective/person/profiles.zcml:9
-msgid "collective.person: Install"
+msgid "s17.person: Install"
 msgstr ""
 
 #: collective/person/profiles.zcml:18
-msgid "Uninstall collective.person"
+msgid "Uninstall s17.person"
 msgstr ""
 
 #: collective/person/behaviors/configure.zcml:12
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Use the user name field as name (basis for the id)"
 msgstr ""
 
-#: collective/person/profiles/default/types/collective.person.person.xml:8
+#: collective/person/profiles/default/types/s17.person.person.xml:8
 msgid "Person"
 msgstr ""
 

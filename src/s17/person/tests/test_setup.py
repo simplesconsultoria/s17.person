@@ -8,9 +8,9 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
 
-from collective.person.testing import INTEGRATION_TESTING
+from s17.person.testing import INTEGRATION_TESTING
 
-PROJECTNAME = 'collective.person'
+PROJECTNAME = 's17.person'
 
 
 class BaseTestCase(unittest.TestCase):
@@ -19,7 +19,7 @@ class BaseTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUpUser(self):
-        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer',])
+        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
         login(self.portal, TEST_USER_NAME)
 
     def setUp(self):
@@ -52,7 +52,7 @@ class TestInstall(BaseTestCase):
     def test_css_registry(self):
         portal_css = self.portal.portal_css
         resources = portal_css.getResourceIds()
-        self.assertTrue('++resource++collective.person.stylesheets/collective.person.css' in resources)
+        self.assertTrue('++resource++s17.person.stylesheets/s17.person.css' in resources)
 
 
 class TestUninstall(BaseTestCase):
@@ -68,4 +68,4 @@ class TestUninstall(BaseTestCase):
     def test_css_registry(self):
         portal_css = self.portal.portal_css
         resources = portal_css.getResourceIds()
-        self.assertFalse('++resource++collective.person.stylesheets/collective.person.css' in resources)
+        self.assertFalse('++resource++s17.person.stylesheets/s17.person.css' in resources)

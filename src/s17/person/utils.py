@@ -9,7 +9,7 @@ from zope.interface import Invalid
 
 from Products.validation import validation
 
-from collective.person import MessageFactory as _
+from s17.person import MessageFactory as _
 
 
 def check_birthday(value):

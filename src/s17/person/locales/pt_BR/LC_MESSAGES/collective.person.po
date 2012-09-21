@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: s17.person 1.0\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2012-03-09 17:03-0300\n"
 "Last-Translator: Alejandro Pereira <alepereira86@gmail.com>\n"
@@ -12,15 +12,15 @@ msgstr ""
 "Language-Code: pt-BR\n"
 "Language-Name: Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: s17.person\n"
 
 #: collective/person/profiles.zcml:9
-msgid "collective.person: Install"
-msgstr "collective.person: Instalar"
+msgid "s17.person: Install"
+msgstr "s17.person: Instalar"
 
 #: collective/person/profiles.zcml:18
-msgid "Uninstall collective.person"
-msgstr "Desinstalar collective.person"
+msgid "Uninstall s17.person"
+msgstr "Desinstalar s17.person"
 
 #: collective/person/behaviors/configure.zcml:12
 msgid "Person-Plone User Bridge"
@@ -46,7 +46,7 @@ msgstr "Nome de nome de usuário"
 msgid "Use the user name field as name (basis for the id)"
 msgstr "Usar o campo nome do usuário como nome (base para o id)"
 
-#: collective/person/profiles/default/types/collective.person.person.xml:8
+#: collective/person/profiles/default/types/s17.person.person.xml:8
 msgid "Person"
 msgstr "Pessoa"
 

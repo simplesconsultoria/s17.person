@@ -2,7 +2,7 @@
 
 from Products.CMFCore.utils import getToolByName
 
-PROJECT = 'collective.person'
+PROJECT = 's17.person'
 
 
 def fromZero(context):

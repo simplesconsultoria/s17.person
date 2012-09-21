@@ -12,12 +12,13 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
-        import collective.person
-        self.loadZCML(package=collective.person)
+        import s17.person
+        self.loadZCML(package=s17.person)
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
-        self.applyProfile(portal, 'collective.person:default')
+        self.applyProfile(portal, 's17.person:default')
+
 
 class FixtureDemo(PloneSandboxLayer):
 
@@ -26,18 +27,18 @@ class FixtureDemo(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         portal.portal_workflow.setChainForPortalTypes(
-             ['Folder', 'collective.person.person'],
+             ['Folder', 's17.person.person'],
              ['simple_publication_workflow'])
-        self.applyProfile(portal, 'collective.person:demo')
+        self.applyProfile(portal, 's17.person:demo')
 
 
 FIXTURE = Fixture()
 DEMO_FIXTURE = FixtureDemo()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
-    name='collective.person:Integration',
+    name='s17.person:Integration',
     )
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE, DEMO_FIXTURE, ),
-    name='collective.person:Functional',
+    name='s17.person:Functional',
     )

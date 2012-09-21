@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <rolemap>
  <permissions>
-  <permission name="collective.person: Add person" acquire="True">
+  <permission name="s17.person: Add person" acquire="True">
    <role name="Manager"/>
    <role name="Site Administrator"/>
    <role name="Owner"/>

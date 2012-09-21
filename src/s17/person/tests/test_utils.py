@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import doctest
-import collective.person.utils
+import s17.person.utils
 
 
 def test_suite():
-    return doctest.DocTestSuite(collective.person.utils)
+    return doctest.DocTestSuite(s17.person.utils)

@@ -17,12 +17,12 @@ from plone.namedfile.field import NamedImage
 
 from Products.CMFCore.utils import getToolByName
 
-from collective.person.utils import check_birthday
-from collective.person.catalog import IPersonCatalog
+from s17.person.utils import check_birthday
+from s17.person.catalog import IPersonCatalog
 
 from datetime import datetime
 
-from collective.person import MessageFactory as _
+from s17.person import MessageFactory as _
 
 
 gender_options = SimpleVocabulary(

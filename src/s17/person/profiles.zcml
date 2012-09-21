@@ -2,29 +2,29 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="collective.person">
+    i18n_domain="s17.person">
 
     <genericsetup:registerProfile
         name="default"
-        title="collective.person: Install"
+        title="s17.person: Install"
         directory="profiles/default"
-        description="collective.person"
+        description="s17.person"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title; description"
         />
 
     <genericsetup:registerProfile
         name="uninstall"
-        title="Uninstall collective.person"
+        title="Uninstall s17.person"
         directory="profiles/uninstall"
-        description="Uninstall collective.person"
+        description="Uninstall s17.person"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title; description"
         />
 
      <genericsetup:registerProfile
         name="demo"
-        title="collective.person: Demo profile"
+        title="s17.person: Demo profile"
         directory="profiles/demo"
         description="Add content for demos"
         provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -32,32 +32,32 @@
         />
 
     <genericsetup:importStep
-        name="collective.person-upgrades"
-        title="collective.person: Upgrades"
+        name="s17.person-upgrades"
+        title="s17.person: Upgrades"
         description="Run available upgrades for this package."
-        handler="collective.person.setuphandlers.run_upgrades">
+        handler="s17.person.setuphandlers.run_upgrades">
     </genericsetup:importStep>
 
     <include package=".upgrades" />
 
     <genericsetup:importStep
-       name="collective.person"
+       name="s17.person"
        title="Person Catalog Import Step"
        description=""
-       handler="collective.person.exportimport.catalog.importPersonCatalog">
+       handler="s17.person.exportimport.catalog.importPersonCatalog">
        <depends name="toolset"/>
     </genericsetup:importStep>
 
     <genericsetup:exportStep
-       name="collective.person"
+       name="s17.person"
        title="Person Catalog Export Step"
        description=""
-       handler="collective.person.exportimport.catalog.exportPersonCatalog"
+       handler="s17.person.exportimport.catalog.exportPersonCatalog"
      />
 
      <genericsetup:importStep
-       name="collective.person-demo-steps"
-       title="collective.person: Demo steps"
+       name="s17.person-demo-steps"
+       title="s17.person: Demo steps"
        description="Do all things necessary to set the demo."
        handler=".setuphandlers.demo_steps">
     </genericsetup:importStep>

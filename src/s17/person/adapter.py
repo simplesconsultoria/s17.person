@@ -6,7 +6,7 @@ from borg.localrole.interfaces import ILocalRoleProvider
 
 from Products.CMFCore.utils import getToolByName
 
-from collective.person.behaviors.user import IPloneUser
+from s17.person.behaviors.user import IPloneUser
 
 
 class PersonLocalRoleAdapter(object):

@@ -5,7 +5,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:grok="http://namespaces.zope.org/grok"
-    i18n_domain="collective.person">
+    i18n_domain="s17.person">
 
     <five:registerPackage package="." />
     <includeDependencies package="." />
@@ -14,8 +14,8 @@
 
     <!-- Permissions -->
     <permission
-       id="collective.person.AddPerson"
-       title="collective.person: Add person"
+       id="s17.person.AddPerson"
+       title="s17.person: Add person"
     />
 
     <include package=".behaviors"/>
@@ -25,13 +25,13 @@
     <include file="profiles.zcml"/>
 
     <browser:resourceDirectory
-      name="collective.person.stylesheets"
+      name="s17.person.stylesheets"
       directory="stylesheets"
       />
 
     <adapter
        factory=".adapter.PersonLocalRoleAdapter"
-       for="collective.person.content.person.IPerson"
+       for="s17.person.content.person.IPerson"
 
     />
 

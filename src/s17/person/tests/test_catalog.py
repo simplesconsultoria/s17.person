@@ -5,7 +5,7 @@ import unittest2 as unittest
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
-from collective.person.testing import INTEGRATION_TESTING
+from s17.person.testing import INTEGRATION_TESTING
 
 
 class IntegrationTest(unittest.TestCase):
@@ -57,60 +57,60 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue('has_portrait' in self.metadata)
 
     def test_person_catalog_multiplex(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='collective.person.person')
+        results = self.pc.searchResults(portal_type='s17.person.person')
         self.assertEquals(len(results), 1)
-        results = self.ct.searchResults(portal_type='collective.person.person')
+        results = self.ct.searchResults(portal_type='s17.person.person')
         self.assertEquals(len(results), 1)
 
     def test_indexer_cooked_birthday(self):
         from datetime import date
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         p1.birthday = date(1969, 7, 21)
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='collective.person.person',
+        results = self.pc.searchResults(portal_type='s17.person.person',
                                         cooked_birthday='0721')
         self.assertEquals(len(results), 1)
 
     def test_indexer_normalized_given_name(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         p1.given_name = u'Dražen'
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='collective.person.person',
+        results = self.pc.searchResults(portal_type='s17.person.person',
                                         sortable_given_name='drazen')
         self.assertEquals(len(results), 1)
 
     def test_indexer_normalized_surname(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         p1.surname = u'Petrović'
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='collective.person.person',
+        results = self.pc.searchResults(portal_type='s17.person.person',
                                         sortable_surname='petrovic')
         self.assertEquals(len(results), 1)
 
     def test_indexer_normalized_fullname(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         p1.given_name = u'Dražen'
         p1.surname = u'Petrović'
         p1.reindexObject()
-        results = self.pc.searchResults(portal_type='collective.person.person',
+        results = self.pc.searchResults(portal_type='s17.person.person',
                                         sortable_fullname='drazen-petrovic')
         self.assertEquals(len(results), 1)
 
     def test_delete_person_remove_from_catalogs(self):
-        self.folder.invokeFactory('collective.person.person', 'p1')
+        self.folder.invokeFactory('s17.person.person', 'p1')
         p1 = self.folder['p1']
         p1.given_name = u'Dražen'
         p1.surname = u'Petrović'
         p1.reindexObject()
         self.folder.manage_delObjects(['p1', ])
-        results = self.pc.searchResults(portal_type='collective.person.person')
+        results = self.pc.searchResults(portal_type='s17.person.person')
         self.assertEquals(len(results), 0)
-        results = self.ct.searchResults(portal_type='collective.person.person')
+        results = self.ct.searchResults(portal_type='s17.person.person')
         self.assertEquals(len(results), 0)

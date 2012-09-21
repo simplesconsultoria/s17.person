@@ -16,9 +16,9 @@ from plone.app.content.interfaces import INameFromTitle
 
 from Products.CMFCore.utils import getToolByName
 
-from collective.person.content.person import IPerson
+from s17.person.content.person import IPerson
 
-from collective.person import MessageFactory as _
+from s17.person import MessageFactory as _
 
 
 def validate_user_name(value):
@@ -72,11 +72,11 @@ class PloneUser(object):
 
     @property
     def user_name(self):
-        return self.annotation.get('collective.person.user_name', '')
+        return self.annotation.get('s17.person.user_name', '')
 
     @user_name.setter
     def user_name(self, value):
-        self.annotation['collective.person.user_name'] = value
+        self.annotation['s17.person.user_name'] = value
 
     def getUser(self):
         ''' Return the Plone User related to this content
@@ -111,5 +111,5 @@ class NameFromUserName(object):
     @property
     def title(self):
         anno = self.annotation
-        if anno and 'collective.person.user_name' in anno:
-            return anno['collective.person.user_name']
+        if anno and 's17.person.user_name' in anno:
+            return anno['s17.person.user_name']

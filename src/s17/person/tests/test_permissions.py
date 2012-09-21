@@ -2,7 +2,7 @@
 
 import unittest2 as unittest
 
-from collective.person.testing import INTEGRATION_TESTING
+from s17.person.testing import INTEGRATION_TESTING
 
 
 class PermissionsTest(unittest.TestCase):
@@ -13,7 +13,7 @@ class PermissionsTest(unittest.TestCase):
         self.portal = self.layer['portal']
 
     def test_add_permissions(self):
-        permission = 'collective.person: Add person'
+        permission = 's17.person: Add person'
         expected = ['Contributor', 'Manager', 'Owner', 'Site Administrator']
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]

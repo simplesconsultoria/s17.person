@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
-<object name="collective.person.person"
+<object name="s17.person.person"
    meta_type="Dexterity FTI"
-   i18n:domain="collective.person"
+   i18n:domain="s17.person"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Person</property>
   <property name="description" i18n:translate="">A person</property>
-  <property name="content_icon">++resource++collective.person/user.png</property>
-  <property name="factory">collective.person.person</property>
+  <property name="content_icon">++resource++s17.person/user.png</property>
+  <property name="factory">s17.person.person</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
   <property name="allowed_content_types" />
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">collective.person.content.person.IPerson</property>
-  <property name="klass">collective.person.content.person.Person</property>
+  <property name="schema">s17.person.content.person.IPerson</property>
+  <property name="klass">s17.person.content.person.Person</property>
 
-  <property name="add_permission">collective.person.AddPerson</property>
+  <property name="add_permission">s17.person.AddPerson</property>
 
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />

@@ -6,7 +6,7 @@ from Products.GenericSetup.interfaces import ISetupEnviron
 from Products.GenericSetup.utils import exportObjects
 from Products.GenericSetup.utils import importObjects
 
-from collective.person.catalog import IPersonCatalog
+from s17.person.catalog import IPersonCatalog
 
 
 class PersonCatalogXMLAdapter(ZCatalogXMLAdapter):
@@ -47,7 +47,7 @@ def importPersonCatalog(context):
     tool = getToolByName(site, 'portal_personcatalog', None)
 
     if tool is None:
-        logger = context.getLogger("collective.person")
+        logger = context.getLogger("s17.person")
         logger.info("Catalog not installed.")
         return
 
@@ -62,7 +62,7 @@ def exportPersonCatalog(context):
     site = context.getSite()
     tool = getToolByName(site, 'portal_personcatalog', None)
     if tool is None:
-        logger = context.getLogger("collective.person")
+        logger = context.getLogger("s17.person")
         logger.info("Nothing to export.")
         return
 

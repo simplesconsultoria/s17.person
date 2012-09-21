@@ -3,16 +3,17 @@ Installation
 
 To enable this product in a buildout-based installation:
 
-1. Edit your buildout.cfg and add ``collective.person`` to the list of eggs to
+1. Edit your buildout.cfg and add ``s17.person`` to the list of eggs to
    install ::
 
     [buildout]
     ...
     eggs =
-        collective.person
+        s17.person
 
-2. You may need to extend a Dexterity known good set (KGS) to make sure that
-   you get the right versions of the packages that make up Dexterity ::
+2. If you are using Plone 4.1 you may need to extend a Dexterity known good
+   set (KGS) to make sure that you get the right versions of the packages that
+   make up Dexterity ::
 
     [buildout]
     ...
@@ -24,8 +25,7 @@ take care of updating your system.
 
 Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
 
-Check the box next to ''collective.person'' and click the 'Activate' button.
+Check the box next to ``s17.person`` and click the 'Activate' button.
 
 Note: You may have to empty your browser cache and save your resource
 registries in order to see the effects of the product installation.
-

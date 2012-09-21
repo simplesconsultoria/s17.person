@@ -1,6 +1,6 @@
-*****************
-collective.person
-*****************
+**********
+s17.person
+**********
 
 .. contents:: Table of Contents
 
@@ -21,9 +21,9 @@ The steps to activate this profile you must do:
 
     1. Go to the zmi -> portal_setup.
     2. Click on ''Import'' tab.
-    3. Select the profile ''collective.person: Demo profile'' from the drop
+    3. Select the profile ''s17.person: Demo profile'' from the drop
        down.
-    4. Check the step ''collective.person: Demo steps'' and click the button
+    4. Check the step ''s17.person: Demo steps'' and click the button
        ''import selected steps''.
 
 Once you done the process you can see in you site a folder called ''Persons''
@@ -35,8 +35,9 @@ With this option you can have a quick view to see what this product offers.
 Mostly Harmless
 ---------------
 
+.. image:: https://secure.travis-ci.org/simplesconsultoria/s17.person.png
+    :target: http://travis-ci.org/simplesconsultoria/s17.person
+
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
-    :target: http://travis-ci.org/collective/collective.person
 
-.. _`opening a support ticket`: https://github.com/simplesconsultoria/collective.person/issues
-
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.person/issues
