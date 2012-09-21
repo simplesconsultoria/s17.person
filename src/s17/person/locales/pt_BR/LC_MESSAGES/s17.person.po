@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: s17.person 1.0\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-03-09 17:03-0300\n"
-"Last-Translator: Alejandro Pereira <alepereira86@gmail.com>\n"
+"PO-Revision-Date: 2012-09-21 14:01-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -14,146 +14,168 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: s17.person\n"
 
-#: collective/person/profiles.zcml:9
-msgid "s17.person: Install"
-msgstr "s17.person: Instalar"
+#: s17/person/profiles/default/types/s17.person.person.xml
+msgid "A person"
+msgstr "Uma pessoa"
 
-#: collective/person/profiles.zcml:18
-msgid "Uninstall s17.person"
-msgstr "Desinstalar s17.person"
+#: s17/person/behaviors/contact.py:39
+msgid "AIM"
+msgstr "AIM"
 
-#: collective/person/behaviors/configure.zcml:12
-msgid "Person-Plone User Bridge"
-msgstr "Pessoa-Plone Usuário Ponte"
-
-#: collective/person/behaviors/configure.zcml:13
-msgid "Integrates a Person-ish content type to a Plone user"
-msgstr "Integra um tipo de conteúdo Pessoa-ish para um usuário Plone"
-
-#: collective/person/behaviors/configure.zcml:20
-msgid "Contact Info"
-msgstr "Informações de contato"
-
-#: collective/person/behaviors/configure.zcml:21
-msgid "Basic contact information behavior for Person-ish content types to a Plone user"
-msgstr "Behavior de informações básicas de contato para tipos de conteúdo Person-ish para um usuário Plone"
-
-#: collective/person/behaviors/configure.zcml:30
-msgid "Name from user name"
-msgstr "Nome de nome de usuário"
-
-#: collective/person/behaviors/configure.zcml:31
-msgid "Use the user name field as name (basis for the id)"
-msgstr "Usar o campo nome do usuário como nome (base para o id)"
-
-#: collective/person/profiles/default/types/s17.person.person.xml:8
-msgid "Person"
-msgstr "Pessoa"
-
-#: collective/person/content/person.py:27
-msgid "Female"
-msgstr "Feminino"
-
-#: collective/person/content/person.py:28
-msgid "Male"
-msgstr "Masculino"
-
-#: collective/person/content/person.py:29
-msgid "Rather not say"
-msgstr "Prefiro não dizer"
-
-#: collective/person/content/person.py:37
-msgid "First Name"
-msgstr "Nome"
-
-#: collective/person/content/person.py:38
-msgid "First name of this person."
-msgstr "Nome para essa pessoa."
-
-#: collective/person/content/person.py:43
-msgid "Surname"
-msgstr "Sobrenome"
-
-#: collective/person/content/person.py:44
-msgid "Surname of this person."
-msgstr "Sobrenome para essa pessoa."
-
-#: collective/person/content/person.py:49
-msgid "Gender"
-msgstr "Gênero"
-
-#: collective/person/content/person.py:56
+#: s17/person/content/person.py:58
 msgid "Birthday"
 msgstr "Aniversário"
 
-#: collective/person/content/person.py:57
+#: s17/person/utils.py:66
+msgid "Birthday must be a date in the past."
+msgstr "A data de nascimento não pode ser no futuro."
+
+#: s17/person/content/person.py:59
 msgid "Birthday of this person."
 msgstr "Aniversário para issa pessoa."
 
-#: collective/person/content/person.py:63
-msgid "Portrait"
-msgstr "Retrato"
+#: s17/person/behaviors/contact.py:86
+msgid "E-mails"
+msgstr "E-mails"
 
-#: collective/person/content/person.py:64
-msgid "Please provide a portrait for this person."
-msgstr "Por favor, forneça um retrato para esta pessoa."
+#: s17/person/behaviors/contact.py:40
+msgid "Facebook"
+msgstr "Facebook"
 
-#: collective/person/behaviors/user.py:30
-msgid "There is a person already assigned to this username"
-msgstr "Há uma pessoa já foi atribuído a este nome de usuário"
+#: s17/person/content/person.py:29
+msgid "Female"
+msgstr "Feminino"
 
-#: collective/person/behaviors/user.py:39
-msgid "Username"
-msgstr "Nome de usuário"
+#: s17/person/content/person.py:39
+msgid "First Name"
+msgstr "Nome"
 
-#: collective/person/behaviors/user.py:40
-msgid "Please inform a username to be used."
-msgstr "Por favor informar um nome de usuário para ser usado."
+#: s17/person/content/person.py:40
+msgid "First name of this person."
+msgstr "Nome para essa pessoa."
 
-#: collective/person/behaviors/contact.py:34
-msgid "Work"
-msgstr "Trabalho"
+#: s17/person/behaviors/contact.py:41
+msgid "Gadu-Gadu"
+msgstr "Gadu-Gadu"
 
-#: collective/person/behaviors/contact.py:35
+#: s17/person/content/person.py:51
+msgid "Gender"
+msgstr "Gênero"
+
+#: s17/person/behaviors/contact.py:42
+msgid "Google Talk"
+msgstr "Google Talk"
+
+#: s17/person/behaviors/contact.py:35
 msgid "Home"
 msgstr "Particular"
 
-#: collective/person/behaviors/contact.py:51
-msgid "Please fix the provided information."
-msgstr "Por favor, corrija a informação fornecida."
+#: s17/person/behaviors/contact.py:43
+msgid "ICQ"
+msgstr "ICQ"
 
-#: collective/person/behaviors/contact.py:58
-msgid "Category"
-msgstr "Categoria"
-
-#: collective/person/behaviors/contact.py:63
-msgid "Value"
-msgstr "Valor"
-
-#: collective/person/behaviors/contact.py:87
-msgid "Please inform emails for this person."
-msgstr "Por favor, informe e-mails para essa pessoa."
-
-#: collective/person/behaviors/contact.py:96
+#: s17/person/behaviors/contact.py:96
 msgid "Instant Messengers"
 msgstr "Mensageiros instantâneos"
 
-#: collective/person/behaviors/contact.py:97
+#: s17/person/behaviors/contact.py:97
 msgid "Instant messengers for this person."
 msgstr "Mensageiros instantâneos para esta pessoa."
 
-#: collective/person/behaviors/contact.py:105
-msgid "Telephones"
-msgstr "Telefones"
-
-#: collective/person/behaviors/contact.py:106
-msgid "Please inform telephones for this person."
-msgstr "Por favor, informe telefones para essa pessoa."
-
-#: collective/person/behaviors/contact.py:121
+#: s17/person/behaviors/contact.py:121
 msgid "Invalid E-mail"
 msgstr "E-mail inválido"
 
-#: collective/person/behaviors/contact.py:136
+#: s17/person/behaviors/contact.py:136
 msgid "Invalid Phone Number"
 msgstr "Número de telefone inválido"
+
+#: s17/person/behaviors/contact.py:44
+msgid "Jabber"
+msgstr "Jabber"
+
+#: s17/person/behaviors/contact.py:45
+msgid "MSN"
+msgstr "MSN"
+
+#: s17/person/content/person.py:30
+msgid "Male"
+msgstr "Masculino"
+
+#: s17/person/profiles/default/types/s17.person.person.xml
+msgid "Person"
+msgstr "Pessoa"
+
+#: s17/person/behaviors/contact.py:51
+msgid "Please fix the provided information."
+msgstr "Por favor, corrija a informação fornecida."
+
+#: s17/person/behaviors/user.py:40
+msgid "Please inform a username to be used."
+msgstr "Por favor informar um nome de usuário para ser usado."
+
+#: s17/person/behaviors/contact.py:87
+msgid "Please inform emails for this person."
+msgstr "Por favor, informe e-mails para essa pessoa."
+
+#: s17/person/behaviors/contact.py:106
+msgid "Please inform telephones for this person."
+msgstr "Por favor, informe telefones para essa pessoa."
+
+#: s17/person/content/person.py:66
+msgid "Please provide a portrait for this person."
+msgstr "Por favor, forneça um retrato para esta pessoa."
+
+#: s17/person/content/person.py:65
+#: s17/person/content/person_templates/view.pt:48
+msgid "Portrait"
+msgstr "Retrato"
+
+#: s17/person/content/person.py:31
+msgid "Rather not say"
+msgstr "Prefiro não dizer"
+
+#: s17/person/behaviors/contact.py:46
+msgid "Skype"
+msgstr "Skype"
+
+#: s17/person/content/person.py:45
+msgid "Surname"
+msgstr "Sobrenome"
+
+#: s17/person/content/person.py:46
+msgid "Surname of this person."
+msgstr "Sobrenome para essa pessoa."
+
+#: s17/person/behaviors/contact.py:105
+msgid "Telephones"
+msgstr "Telefones"
+
+#: s17/person/utils.py:97
+msgid "The informed email is invalid."
+msgstr "O enderço de correo eletrónico não é válido."
+
+#: s17/person/utils.py:132
+msgid "The informed phone number is invalid."
+msgstr "O número de telefone não é válido."
+
+#: s17/person/behaviors/user.py:30
+msgid "There is a person already assigned to this username"
+msgstr "Há uma pessoa já foi atribuído a este nome de usuário"
+
+#: s17/person/behaviors/user.py:39
+msgid "Username"
+msgstr "Nome de usuário"
+
+#: s17/person/behaviors/contact.py:63
+msgid "Value"
+msgstr "Valor"
+
+#: s17/person/behaviors/contact.py:34
+msgid "Work"
+msgstr "Trabalho"
+
+#: s17/person/behaviors/contact.py:47
+msgid "Yahoo!"
+msgstr "Yahoo!"
+

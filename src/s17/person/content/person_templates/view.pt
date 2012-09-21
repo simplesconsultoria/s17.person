@@ -45,7 +45,7 @@
             </div>
 
             <div class="field person-portrait">
-                <label> Portrait </label>
+                <label i18n:translate=""> Portrait </label>
                 <br />
                 <div tal:content="structure view/w/picture/render" />
             </div>

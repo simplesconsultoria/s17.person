@@ -44,7 +44,7 @@ im_options = SimpleVocabulary(
      SimpleTerm(value=u'jabber', title=_(u'Jabber')),
      SimpleTerm(value=u'msn', title=_(u'MSN')),
      SimpleTerm(value=u'skype', title=_(u'Skype')),
-     SimpleTerm(value=u'yahoo', title=_(u'Yahoo'))])
+     SimpleTerm(value=u'yahoo', title=_(u'Yahoo!'))])
 
 
 class InvalidInformation(Invalid):

@@ -1,181 +1,188 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: s17.person 1.0\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2012-09-21 13:58-0300\n"
-"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"POT-Creation-Date: 2012-09-21 16:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: es\n"
-"Language-Name: Spanish\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: s17.person\n"
 
+#: s17/person/content/person.py:52
+msgid ""
+msgstr ""
+
 #: s17/person/profiles/default/types/s17.person.person.xml
 msgid "A person"
-msgstr "Una persona"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:39
 msgid "AIM"
-msgstr "AIM"
+msgstr ""
 
 #: s17/person/content/person.py:58
 msgid "Birthday"
-msgstr "Cumpleaños"
+msgstr ""
 
 #: s17/person/utils.py:66
 msgid "Birthday must be a date in the past."
-msgstr "La fecha de nacimiento no puede ser en el futuro."
+msgstr ""
 
 #: s17/person/content/person.py:59
 msgid "Birthday of this person."
-msgstr "Fecha de cumpleaños para esta persona."
+msgstr ""
 
 #: s17/person/behaviors/contact.py:86
 msgid "E-mails"
-msgstr "Direcciones de correo electrónico"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:40
 msgid "Facebook"
-msgstr "Facebook"
+msgstr ""
 
 #: s17/person/content/person.py:29
 msgid "Female"
-msgstr "Femenino"
+msgstr ""
 
 #: s17/person/content/person.py:39
 msgid "First Name"
-msgstr "Nombre"
+msgstr ""
 
 #: s17/person/content/person.py:40
 msgid "First name of this person."
-msgstr "Nombre para esta persona."
+msgstr ""
 
 #: s17/person/behaviors/contact.py:41
 msgid "Gadu-Gadu"
-msgstr "Gadu-Gadu"
+msgstr ""
 
 #: s17/person/content/person.py:51
 msgid "Gender"
-msgstr "Género"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:42
 msgid "Google Talk"
-msgstr "Google Talk"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:35
 msgid "Home"
-msgstr "Particular"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:43
 msgid "ICQ"
-msgstr "ICQ"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:96
 msgid "Instant Messengers"
-msgstr "Mensajería instantánea"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:97
 msgid "Instant messengers for this person."
-msgstr "Cuentas de mensajería instantánea de esta persona."
+msgstr ""
 
 #: s17/person/behaviors/contact.py:121
 msgid "Invalid E-mail"
-msgstr "E-mail inválido"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:136
 msgid "Invalid Phone Number"
-msgstr "Número de teléfono inválido"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:44
 msgid "Jabber"
-msgstr "Jabber"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:45
 msgid "MSN"
-msgstr "MSN"
+msgstr ""
 
 #: s17/person/content/person.py:30
 msgid "Male"
-msgstr "Masculino"
+msgstr ""
 
 #: s17/person/profiles/default/types/s17.person.person.xml
 msgid "Person"
-msgstr "Persona"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:51
 msgid "Please fix the provided information."
-msgstr "Por favor corrija la información indicada."
+msgstr ""
 
 #: s17/person/behaviors/user.py:40
 msgid "Please inform a username to be used."
-msgstr "Por favor, proporcione un nombre de usuario para ser usado."
+msgstr ""
 
 #: s17/person/behaviors/contact.py:87
 msgid "Please inform emails for this person."
-msgstr "Por favor proporcione emails para esta persona."
+msgstr ""
 
 #: s17/person/behaviors/contact.py:106
 msgid "Please inform telephones for this person."
-msgstr "Por favor proporcione teléfonos para esta persona."
+msgstr ""
 
 #: s17/person/content/person.py:66
 msgid "Please provide a portrait for this person."
-msgstr "Por favor proporcione un retrato para esta persona."
+msgstr ""
 
 #: s17/person/content/person.py:65
 #: s17/person/content/person_templates/view.pt:48
 msgid "Portrait"
-msgstr "Retrato"
+msgstr ""
 
 #: s17/person/content/person.py:31
 msgid "Rather not say"
-msgstr "Preferentemente no decir"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:46
 msgid "Skype"
-msgstr "Skype"
+msgstr ""
 
 #: s17/person/content/person.py:45
 msgid "Surname"
-msgstr "Apellido"
+msgstr ""
 
 #: s17/person/content/person.py:46
 msgid "Surname of this person."
-msgstr "Apellido para esta persona"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:105
 msgid "Telephones"
-msgstr "Teléfonos"
+msgstr ""
 
 #: s17/person/utils.py:97
 msgid "The informed email is invalid."
-msgstr "La dirección de correo electrónico no es válida"
+msgstr ""
 
 #: s17/person/utils.py:132
 msgid "The informed phone number is invalid."
-msgstr "El número telefónico no es válido"
+msgstr ""
 
 #: s17/person/behaviors/user.py:30
 msgid "There is a person already assigned to this username"
-msgstr "Ya existe una persona con este nombre de usuario"
+msgstr ""
 
 #: s17/person/behaviors/user.py:39
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:63
 msgid "Value"
-msgstr "Valor"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:34
 msgid "Work"
-msgstr "Trabajo"
+msgstr ""
 
 #: s17/person/behaviors/contact.py:47
 msgid "Yahoo!"
-msgstr "Yahoo!"
+msgstr ""
 
