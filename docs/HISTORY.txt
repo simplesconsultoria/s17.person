@@ -3,7 +3,7 @@ Changelog
 
 Because you have to know where your towel is.
 
-1.0a5 (unreleased)
+1.0b1 (2012-09-21)
 ^^^^^^^^^^^^^^^^^^
 
 - Add plone.directives.dexterity as a dependency as required by Plone 4.3.
