@@ -4,6 +4,7 @@ from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
+from plone.testing.z2 import ZSERVER_FIXTURE
 
 
 class Fixture(PloneSandboxLayer):
@@ -27,8 +28,8 @@ class FixtureDemo(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         portal.portal_workflow.setChainForPortalTypes(
-             ['Folder', 'Person'],
-             ['simple_publication_workflow'])
+            ['Folder', 'Person'],
+            ['simple_publication_workflow'])
         self.applyProfile(portal, 's17.person:demo')
 
 
@@ -37,8 +38,8 @@ DEMO_FIXTURE = FixtureDemo()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
     name='s17.person:Integration',
-    )
+)
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE, DEMO_FIXTURE, ),
+    bases=(FIXTURE, DEMO_FIXTURE, ZSERVER_FIXTURE,),
     name='s17.person:Functional',
-    )
+)

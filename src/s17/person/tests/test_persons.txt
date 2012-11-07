@@ -1,0 +1,22 @@
+*** Settings ***
+
+Resource  keywords.txt
+Suite Setup  Start Browser and Log In
+Suite Teardown  Close Browser
+
+*** Variables ***
+
+${SITE_OWNER_NAME} =  admin
+${SITE_OWNER_PASSWORD} =  secret
+
+*** Test cases ***
+
+Test Persons
+    Start Browser and Log In
+
+*** Keywords ***
+
+Start Browser and Log In
+    Open Browser  ${PLONE_URL}
+    Log in  ${SITE_OWNER_NAME}  ${SITE_OWNER_PASSWORD}
+    Goto Homepage
