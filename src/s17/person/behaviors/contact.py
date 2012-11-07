@@ -83,32 +83,32 @@ class IContactInfo(form.Schema):
 
     form.widget(emails=DataGridFieldFactory)
     emails = schema.List(
-            title=_(u'E-mails'),
-            description=_(u'Please inform emails for this person.'),
-            required=False,
-            value_type=DictRow(title=_(u'E-mails'),
-                               schema=IContactItem),
-            default=[],
-        )
+        title=_(u'E-mails'),
+        description=_(u'Please inform emails for this person.'),
+        required=False,
+        value_type=DictRow(title=_(u'E-mails'),
+                           schema=IContactItem),
+        default=[],
+    )
 
     form.widget(instant_messengers=DataGridFieldFactory)
     instant_messengers = schema.List(
-            title=_(u'Instant Messengers'),
-            description=_(u'Instant messengers for this person.'),
-            value_type=DictRow(title=_(u'Instant Messengers'),
-                               schema=IIMItem),
-            required=False,
-        )
+        title=_(u'Instant Messengers'),
+        description=_(u'Instant messengers for this person.'),
+        value_type=DictRow(title=_(u'Instant Messengers'),
+                           schema=IIMItem),
+        required=False,
+    )
 
     form.widget(telephones=DataGridFieldFactory)
     telephones = schema.List(
-            title=_(u'Telephones'),
-            description=_(u'Please inform telephones for this person.'),
-            required=False,
-            value_type=DictRow(title=_(u'Telephones'),
-                               schema=IContactItem),
-            default=[],
-        )
+        title=_(u'Telephones'),
+        description=_(u'Please inform telephones for this person.'),
+        required=False,
+        value_type=DictRow(title=_(u'Telephones'),
+                           schema=IContactItem),
+        default=[],
+    )
 
     @invariant
     def validate_emails(data):

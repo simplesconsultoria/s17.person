@@ -36,11 +36,11 @@ class IPloneUser(form.Schema):
     '''
 
     user_name = schema.TextLine(
-            title=_(u'Username'),
-            description=_(u'Please inform a username to be used.'),
-            #source="plone.principalsource.Principals",
-            required=True,
-        )
+        title=_(u'Username'),
+        description=_(u'Please inform a username to be used.'),
+        #source="plone.principalsource.Principals",
+        required=True,
+    )
 
     @invariant
     def user_name_unique(data):

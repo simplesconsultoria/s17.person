@@ -20,8 +20,6 @@ from Products.CMFCore.utils import getToolByName
 from s17.person.utils import check_birthday
 from s17.person.catalog import IPersonCatalog
 
-from datetime import datetime
-
 from s17.person import MessageFactory as _
 
 
@@ -39,33 +37,33 @@ class IPerson(form.Schema):
         title=_(u"First Name"),
         description=_(u"First name of this person."),
         required=True,
-        )
+    )
 
     surname = schema.TextLine(
         title=_(u"Surname"),
         description=_(u"Surname of this person."),
         required=True,
-        )
+    )
 
     gender = schema.Choice(
         title=_(u"Gender"),
         description=_(u""),
         required=False,
         source=gender_options,
-        )
+    )
 
     birthday = schema.Date(
         title=_(u"Birthday"),
         description=_(u"Birthday of this person."),
         required=False,
         constraint=check_birthday,
-        )
+    )
 
     picture = NamedImage(
         title=_(u"Portrait"),
         description=_(u"Please provide a portrait for this person."),
         required=False,
-        )
+    )
 
 
 @indexer(IPerson, IPersonCatalog)
@@ -141,8 +139,7 @@ class Person(dexterity.Item):
     def _catalogs(self):
         ''' catalogs we will use '''
         return [getToolByName(self, 'portal_catalog'),
-                getToolByName(self, 'portal_personcatalog'),
-               ]
+                getToolByName(self, 'portal_personcatalog')]
 
     def indexObject(self):
         ''' index an object on all registered catalogs '''
