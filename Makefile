@@ -17,3 +17,4 @@ tests:
 	pep8 --ignore=$(pep8_ignores) src/s17
 	# XXX: use patched version of pyflakes
 	bin/pyflakes src/s17
+	./coverage
