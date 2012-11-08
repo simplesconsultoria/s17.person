@@ -14,6 +14,6 @@ install: prerequisites
 
 tests:
 	bin/test
-	# XXX: incorrect 'redefinition of function'
-	#pyflakes src/  # ignore until new pyflakes version is released
+	# XXX: use patched version of pyflakes
+	bin/pyflakes src/
 	pep8 --ignore=$(pep8_ignores) src/
