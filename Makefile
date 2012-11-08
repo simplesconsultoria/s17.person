@@ -14,6 +14,6 @@ install: prerequisites
 
 tests:
 	bin/test
+	pep8 --ignore=$(pep8_ignores) src/s17
 	# XXX: use patched version of pyflakes
-	bin/pyflakes src/
-	pep8 --ignore=$(pep8_ignores) src/
+	bin/pyflakes src/s17
