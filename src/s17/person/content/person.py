@@ -29,6 +29,11 @@ gender_options = SimpleVocabulary(
      SimpleTerm(value=u'n/a', title=_(u'Rather not say'))])
 
 
+def has_portrait(person):
+    picture = person.picture
+    return (picture and picture.getSize())
+
+
 class IPerson(form.Schema):
     """ A representation of a Person
     """
@@ -123,8 +128,7 @@ grok.global_adapter(person_normalized_fullname,
 def person_has_portrait(obj):
     ''' Return Tr if the person has a portrait
     '''
-    if obj.portrait:
-        return True
+    return has_portrait(obj)
 
 grok.global_adapter(person_has_portrait,
                     name="has_portrait")
@@ -202,7 +206,7 @@ class Person(dexterity.Item):
 
     def image_thumb(self):
         ''' Return a thumbnail '''
-        if not self.picture:
+        if not has_portrait(self):
             return None
         view = self.unrestrictedTraverse('@@images')
         return view.scale(fieldname='picture',
@@ -210,7 +214,7 @@ class Person(dexterity.Item):
 
     def tag(self, scale='thumb', css_class='tileImage', **kw):
         ''' Return a tag to the image '''
-        if not self.picture:
+        if not (has_portrait(self)):
             return ''
         view = self.unrestrictedTraverse('@@images')
         return view.tag(fieldname='picture',
