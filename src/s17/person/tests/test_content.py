@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-
+import os
 import unittest2 as unittest
-
+from plone.namedfile.file import NamedBlobImage
 from zope.component import createObject
 from zope.component import queryUtility
 
@@ -32,11 +32,19 @@ class IntegrationTest(unittest.TestCase):
         SCHEMA_CACHE.invalidate('Person')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
+        self.setup_content(self.folder)
+
+    def setup_content(self, folder):
+        path = os.path.dirname(__file__)
+        data = open(os.path.join(path, 'picture.jpg')).read()
+        image = NamedBlobImage(data, 'image/jpeg', u'picture.jpg')
+        folder.invokeFactory('Person', 'p1')
+        p1 = self.folder['p1']
+        p1.picture = image
+        self.p1 = p1
 
     def test_adding(self):
-        self.folder.invokeFactory('Person', 'p1')
-        p1 = self.folder['p1']
-        self.assertTrue(IPerson.providedBy(p1))
+        self.assertTrue(IPerson.providedBy(self.p1))
 
     def test_fti(self):
         fti = queryUtility(IDexterityFTI, name='Person')
@@ -54,14 +62,12 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue(IPerson.providedBy(new_object))
 
     def test_is_referenceable(self):
-        self.folder.invokeFactory('Person', 'p1')
-        p1 = self.folder['p1']
+        p1 = self.p1
         self.assertTrue(IReferenceable.providedBy(p1))
         self.assertTrue(IAttributeUUID.providedBy(p1))
 
     def test_title(self):
-        self.folder.invokeFactory('Person', 'p1')
-        p1 = self.folder['p1']
+        p1 = self.p1
         p1.given_name = 'James T.'
         p1.surname = 'Kirk'
         self.assertEquals(p1.Title(), 'James T. Kirk')
@@ -80,3 +86,19 @@ class IntegrationTest(unittest.TestCase):
         birthday = date(2069, 7, 21)
         # Date is in the future
         self.assertRaises(Invalid, IPerson['birthday'].validate, birthday)
+
+    def test_image_thumb(self):
+        ''' Test if traversing to image_thumb returns an image
+        '''
+        p1 = self.p1
+        self.assertTrue(p1.restrictedTraverse('image_thumb')().read())
+
+    def test_image_tag(self):
+        ''' Test if tag method works as expected
+        '''
+        p1 = self.p1
+        expected = u'<img src="http://nohost/plone/test-folder/p1/@@images/'
+        self.assertTrue(p1.tag().startswith(expected))
+
+        expected = u'height="128" width="110" class="tileImage" />'
+        self.assertTrue(p1.tag().endswith(expected))
