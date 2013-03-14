@@ -11,3 +11,4 @@ following people:
 
 Development sponsored by Simples Consultoria.
 
+Photo used in tests (http://en.wikipedia.org/wiki/File:Douglas_adams_portrait_cropped.jpg)

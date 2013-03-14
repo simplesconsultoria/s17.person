@@ -6,7 +6,9 @@ Because you have to know where your towel is.
 1.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add image_thumb and tag methods to the content.
+  This enables picture listing on folder_summary_view.
+  [ericof]
 
 
 1.0b1 (2012-09-21)
