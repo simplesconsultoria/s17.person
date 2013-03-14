@@ -93,6 +93,12 @@ class IntegrationTest(unittest.TestCase):
         p1 = self.p1
         self.assertTrue(p1.restrictedTraverse('image_thumb')().read())
 
+    def test_image_thumb_no_image(self):
+        ''' Test if traversing to image_thumb returns None
+        '''
+        p1 = self.p1
+        self.assertEquals(p1.restrictedTraverse('image_thumb')(), None)
+
     def test_image_tag(self):
         ''' Test if tag method works as expected
         '''
@@ -102,3 +108,12 @@ class IntegrationTest(unittest.TestCase):
 
         expected = u'height="128" width="110" class="tileImage" />'
         self.assertTrue(p1.tag().endswith(expected))
+
+    def test_image_tag_no_image(self):
+        ''' Tag should return a default image if no
+            picture available at Person
+        '''
+        p1 = self.p1
+        p1.picture = None
+        expected = u''
+        self.assertEquals(p1.tag(), expected)

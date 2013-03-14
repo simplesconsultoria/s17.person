@@ -202,12 +202,16 @@ class Person(dexterity.Item):
 
     def image_thumb(self):
         ''' Return a thumbnail '''
+        if not self.picture:
+            return None
         view = self.unrestrictedTraverse('@@images')
         return view.scale(fieldname='picture',
                           scale='thumb').index_html()
 
     def tag(self, scale='thumb', css_class='tileImage', **kw):
         ''' Return a tag to the image '''
+        if not self.picture:
+            return ''
         view = self.unrestrictedTraverse('@@images')
         return view.tag(fieldname='picture',
                         scale=scale,
