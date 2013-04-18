@@ -11,6 +11,6 @@ downloads/
 eggs/
 include/
 lib/
+Makefile
 parts/
-src/pyflakes/
 var/
