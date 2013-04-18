@@ -49,10 +49,11 @@ class IPloneUserTest(unittest.TestCase):
         rt = self.portal.portal_registration
         usernames = ['user1', 'user2', ]
         for username in usernames:
-            properties = {'username': username,
-                          'fullname': username,
-                          'email': '%s@foo.bar' % username,
-                         }
+            properties = {
+                'username': username,
+                'fullname': username,
+                'email': '%s@foo.bar' % username,
+            }
             rt.addMember(username, username, properties=properties)
 
     def setUp(self):
@@ -150,7 +151,7 @@ class INameFromUserNameTest(unittest.TestCase):
             behaviors=(
                 's17.person.behaviors.user.IPloneUser',
                 's17.person.behaviors.user.INameFromUserName',
-                ),
+            ),
             schema='s17.person.tests.test_behaviors.IPersonish',
             klass='s17.person.tests.test_behaviors.Personish'
         )
@@ -277,10 +278,12 @@ class IContactInfoTest(unittest.TestCase):
 
     def test_valid_telephones(self):
         data = MockContactInfo()
-        data.telephones = [{'category': 'home',
-                           'data': '+5511555.1213'},
-                          {'category': 'work',
-                           'data': '+5511316.9876'}]
+        data.telephones = [
+            {'category': 'home',
+             'data': '+5511555.1213'},
+            {'category': 'work',
+             'data': '+5511316.9876'},
+        ]
         try:
             IContactInfo.validateInvariants(data)
         except Invalid:

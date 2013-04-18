@@ -54,15 +54,15 @@ def demo_steps(context):
     portal = context.getSite()
     portal.invokeFactory('Folder', 'Persons')
     folder = portal['Persons']
-    list_users = [{'name':'marcelo-santos', 'password':'marcelo',
-                    'number': '1', 'birthday': (1985, 2, 17)},
-                  {'name':'marcelo-alves', 'password':'marcelo',
+    list_users = [{'name': 'marcelo-santos', 'password': 'marcelo',
+                   'number': '1', 'birthday': (1985, 2, 17)},
+                  {'name': 'marcelo-alves', 'password': 'marcelo',
                    'number': '2', 'birthday': (1983, 6, 01)},
-                  {'name':'julia-alvarez', 'password':'julia',
+                  {'name': 'julia-alvarez', 'password': 'julia',
                    'number': '3', 'birthday': (1988, 10, 26)},
-                  {'name':'juan-perez', 'password':'juan',
+                  {'name': 'juan-perez', 'password': 'juan',
                    'number': '4', 'birthday': (1981, 1, 15)},
-                  {'name':'gustavo-roner', 'password':'gustavo',
+                  {'name': 'gustavo-roner', 'password': 'gustavo',
                    'number': '5', 'birthday': (1986, 2, 15)}]
 
     for user in list_users:
@@ -71,45 +71,46 @@ def demo_steps(context):
     # Set behaviors to person
     behaviors = ['s17.person.behaviors.user.IPloneUser',
                  's17.person.behaviors.contact.IContactInfo']
-    fti = queryUtility(IDexterityFTI,
-                        name='Person')
+    fti = queryUtility(IDexterityFTI, name='Person')
     fti.behaviors = tuple(behaviors)
 
     for user in list_users:
         person = user['name']
         fullname = person.split('-')
         birthday = user['birthday']
-        image = os.path.join(os.path.dirname(__file__), 'profiles', 'demo',
-                             'images', 'picture%s.png' % user['number'])
+        image = os.path.join(
+            os.path.dirname(__file__), 'profiles', 'demo', 'images', 'picture%s.png' % user['number'])
         data = getFile(image).read()
-        folder.invokeFactory('Person', person,
-            birthday=datetime.date(datetime(birthday[0], birthday[1],
-                                   birthday[2])),
+        folder.invokeFactory(
+            'Person',
+            person,
+            birthday=datetime.date(datetime(birthday[0], birthday[1], birthday[2])),
             picture=NamedImage(data),
             given_name=fullname[0].capitalize(),
             surname=fullname[1].capitalize(),
             gender=u'm',
-            )
+        )
         if (person == 'julia-alvarez'):
             folder[person].gender = 'f'
         p1_contact = IContactInfo(folder[person])
-        p1_contact.emails = [{'category': u'work',
-                                          'data': u'%s@simples.com.br' %
-                                         person.replace('-', '.')},
-                             {'category': u'home',
-                                          'data': u'%s@gmail.com' %
-                                         person.replace('-', '.')}]
-        p1_contact.instant_messengers = [{'category': u'skype',
-                                          'data': u'%s' %
-                                         person.replace('-', '_')}]
-        p1_contact.telephones = [{'category': 'home', 'data': '+5511555.1213'},
-                                 {'category': 'work', 'data': '+5511316.9876'}]
+        p1_contact.emails = [
+            {'category': u'work',
+             'data': u'%s@simples.com.br' % person.replace('-', '.')},
+            {'category': u'home',
+             'data': u'%s@gmail.com' % person.replace('-', '.')},
+        ]
+        p1_contact.instant_messengers = [
+            {'category': u'skype',
+             'data': u'%s' % person.replace('-', '_')},
+        ]
+        p1_contact.telephones = [
+            {'category': 'home', 'data': '+5511555.1213'},
+            {'category': 'work', 'data': '+5511316.9876'},
+        ]
         p1_ploneuser = IPloneUser(folder[person])
         p1_ploneuser.user_name = person
         folder[person].reindexObject()
-        review_state = folder[person].portal_workflow.getInfoFor(
-                                                            folder[person],
-                                                            'review_state')
+        review_state = folder[person].portal_workflow.getInfoFor(folder[person], 'review_state')
         if not review_state == 'published':
             folder[person].portal_workflow.doActionFor(folder[person],
                                                        'publish')
@@ -123,9 +124,9 @@ def demo_steps(context):
 
 def create_user(username, password, portal):
     properties = {
-    'username': username,
-    'fullname': (u'%s' % username).encode("utf-8"),
-    'email': u'%s@email.com' % username,
+        'username': username,
+        'fullname': (u'%s' % username).encode("utf-8"),
+        'email': u'%s@email.com' % username,
     }
     reg_tool = getToolByName(portal, 'portal_registration')
     reg_tool.addMember(username, password, properties=properties)

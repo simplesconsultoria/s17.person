@@ -1,15 +1,19 @@
 # -*- coding:utf-8 -*-
 
+from setuptools import find_packages
+from setuptools import setup
+
 import os
-from setuptools import setup, find_packages
 
 version = '1.0b2.dev0'
 description = "A package containing a Dexterity content type and behaviors \
 to represent a Person as a content in a Plone site."
-long_description = open("README.txt").read() + "\n" + \
-                   open(os.path.join("docs", "INSTALL.txt")).read() + "\n" + \
-                   open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
-                   open(os.path.join("docs", "HISTORY.txt")).read()
+long_description = (
+    open("README.txt").read() + "\n" +
+    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" +
+    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" +
+    open(os.path.join("docs", "HISTORY.txt")).read()
+)
 
 setup(name='s17.person',
       version=version,
