@@ -1,16 +1,21 @@
-import unittest
-
-import robotsuite
+# -*- coding: utf-8 -*-
 
 from plone.testing import layered
-
 from s17.person.testing import FUNCTIONAL_TESTING
+
+import os
+import robotsuite
+import unittest
+
+dirname = os.path.dirname(__file__)
+files = os.listdir(dirname)
+tests = [f for f in files if f.startswith('test_') and f.endswith('.txt')]
 
 
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
-        layered(robotsuite.RobotTestSuite("test_persons.txt"),
-                layer=FUNCTIONAL_TESTING),
+        layered(robotsuite.RobotTestSuite(t), layer=FUNCTIONAL_TESTING)
+        for t in tests
     ])
     return suite
