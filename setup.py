@@ -9,10 +9,10 @@ version = '1.0b2.dev0'
 description = "A package containing a Dexterity content type and behaviors \
 to represent a Person as a content in a Plone site."
 long_description = (
-    open("README.txt").read() + "\n" +
-    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" +
-    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" +
-    open(os.path.join("docs", "HISTORY.txt")).read()
+    open("README.rst").read() + "\n" +
+    open(os.path.join("docs", "INSTALL.rst")).read() + "\n" +
+    open(os.path.join("docs", "CREDITS.rst")).read() + "\n" +
+    open(os.path.join("docs", "HISTORY.rst")).read()
 )
 
 setup(name='s17.person',

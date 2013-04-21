@@ -6,7 +6,8 @@ Because you have to know where your towel is.
 1.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Tested compatibility with Plone 4.3. [hvelarde]
+- Register static resource directory manually as Grok doesn't do it anymore.
+  Package is now compatible with Plone 4.3. [hvelarde]
 
 - Add image_thumb and tag methods to the content. This enables picture
   listing on folder_summary_view.  [ericof]
