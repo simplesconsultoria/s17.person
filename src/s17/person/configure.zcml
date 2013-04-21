@@ -25,6 +25,11 @@
     <include file="profiles.zcml"/>
 
     <browser:resourceDirectory
+        name="s17.person"
+        directory="static"
+        />
+
+    <browser:resourceDirectory
       name="s17.person.stylesheets"
       directory="stylesheets"
       />
