@@ -32,7 +32,7 @@ msgstr "A data de nascimento não pode ser no futuro."
 
 #: s17/person/content/person.py:59
 msgid "Birthday of this person."
-msgstr "Aniversário para essa pessoa."
+msgstr "Data de aniversário."
 
 #: s17/person/behaviors/contact.py:86
 msgid "E-mails"
