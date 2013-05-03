@@ -1,7 +1,7 @@
 There's a frood who really knows where his towel is
 ---------------------------------------------------
 
-1.0b2 (unreleased)
+1.0b2 (2013-05-03)
 ^^^^^^^^^^^^^^^^^^
 
 - Register static resource directory manually as Grok doesn't do it anymore.
