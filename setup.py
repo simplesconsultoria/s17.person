@@ -5,7 +5,7 @@ from setuptools import setup
 
 import os
 
-version = '1.0b2'
+version = '1.0b3.dev0'
 description = "A package containing a Dexterity content type and behaviors \
 to represent a Person as a content in a Plone site."
 long_description = (
