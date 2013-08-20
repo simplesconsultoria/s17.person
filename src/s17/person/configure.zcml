@@ -42,5 +42,7 @@
 
     <!-- Export and Import Catalog -->
     <adapter factory=".exportimport.catalog.PersonCatalogXMLAdapter"/>
-    
+
+    <adapter factory=".content.person.PictureValidator" />
+
 </configure>

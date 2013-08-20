@@ -21,6 +21,8 @@ from s17.person.utils import check_birthday
 from s17.person.catalog import IPersonCatalog
 
 from s17.person import MessageFactory as _
+from plone.formwidget.namedfile.validator import NamedFileWidgetValidator
+from z3c.form import validator
 
 
 gender_options = SimpleVocabulary(
@@ -69,6 +71,19 @@ class IPerson(form.Schema):
         description=_(u"Please provide a portrait for this person."),
         required=False,
     )
+
+
+class PictureValidator(NamedFileWidgetValidator):
+
+    def validate(self, value, force=False):
+        action = self.request.get("%s.action" % self.widget.name, None)
+        import pdb;pdb.set_trace()
+        if action == 'nochange':
+            return
+        return super(NamedFileWidgetValidator, self).validate(value, force)
+
+
+validator.WidgetValidatorDiscriminators(PictureValidator, field=IPerson['picture'])
 
 
 @indexer(IPerson, IPersonCatalog)
@@ -129,7 +144,7 @@ def person_has_portrait(obj):
     ''' Return Tr if the person has a portrait
     '''
     return has_portrait(obj)
-
+ 
 grok.global_adapter(person_has_portrait,
                     name="has_portrait")
 
