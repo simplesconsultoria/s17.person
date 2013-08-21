@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+from StringIO import StringIO
 import unittest2 as unittest
-from plone.namedfile.file import NamedBlobImage
+from plone.namedfile import NamedBlobImage
 from zope.component import createObject
 from zope.component import queryUtility
 
@@ -109,8 +110,15 @@ class IntegrationTest(unittest.TestCase):
         '''
         p1 = self.p1
         expected = u'<img src="http://nohost/plone/test-folder/p1/@@images/'
-        self.assertTrue(p1.tag().startswith(expected))
+        self.assertTrue(p1.tag(scale=None).startswith(expected))
 
+        expected = u'class="tileImage" />'
+        self.assertTrue(p1.tag(scale=None).endswith(expected))
+
+    def test_image_tag_scale(self):
+        ''' Test if tag method returns thumb scale by default
+        '''
+        p1 = self.p1
         expected = u'height="128" width="110" class="tileImage" />'
         self.assertTrue(p1.tag().endswith(expected))
 
