@@ -8,6 +8,7 @@ following people:
 - Héctor Velarde
 - Alejandro Pereira
 - João S. O. Bueno
+- Juan Pablo Giménez
 
 You can find an updated list of package contributors on `GitHub`_.
 

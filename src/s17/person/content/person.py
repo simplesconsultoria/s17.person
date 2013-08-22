@@ -77,7 +77,6 @@ class PictureValidator(NamedFileWidgetValidator):
 
     def validate(self, value, force=False):
         action = self.request.get("%s.action" % self.widget.name, None)
-        import pdb;pdb.set_trace()
         if action == 'nochange':
             return
         return super(NamedFileWidgetValidator, self).validate(value, force)
